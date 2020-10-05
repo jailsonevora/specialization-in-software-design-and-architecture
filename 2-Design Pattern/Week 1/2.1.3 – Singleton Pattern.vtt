@@ -1,0 +1,483 @@
+WEBVTT
+
+1
+00:00:00.257 --> 00:00:10.257
+[MUSIC]
+
+2
+00:00:14.956 --> 00:00:19.036
+Singleton is a creational pattern which
+describes a way to create an object.
+
+3
+00:00:19.036 --> 00:00:22.750
+The singleton pattern is one of
+the simplest examples of a design pattern.
+
+4
+00:00:22.750 --> 00:00:25.840
+However, you will see that
+it is a powerful technique.
+
+5
+00:00:25.840 --> 00:00:29.913
+As its name suggests, the singleton design
+pattern is about something singular,
+
+6
+00:00:29.913 --> 00:00:30.795
+having only one.
+
+7
+00:00:30.795 --> 00:00:32.420
+But what is it referring to?
+
+8
+00:00:32.420 --> 00:00:34.140
+What do we only want one of?
+
+9
+00:00:34.140 --> 00:00:38.000
+The Singleton pattern refers to
+having only one object of a class.
+
+10
+00:00:38.000 --> 00:00:41.210
+Let's say that you're working on a mobile
+app where the user can play poker.
+
+11
+00:00:41.210 --> 00:00:44.170
+This game has a preferences class to
+define where all the settings for
+
+12
+00:00:44.170 --> 00:00:45.470
+the user are stored.
+
+13
+00:00:45.470 --> 00:00:49.280
+These preferences include visual elements,
+such as the color of the playing surface,
+
+14
+00:00:49.280 --> 00:00:51.310
+and the design on the backs of the cards.
+
+15
+00:00:51.310 --> 00:00:54.900
+Imagine if more than one instance
+of the preferences class existed.
+
+16
+00:00:54.900 --> 00:00:56.600
+When the user is setting
+their preferences,
+
+17
+00:00:56.600 --> 00:00:59.320
+which preferences object
+is saving those choices?
+
+18
+00:00:59.320 --> 00:01:02.390
+And when the game is being displayed,
+which preferences object is used to
+
+19
+00:01:02.390 --> 00:01:05.190
+determine the design and
+colors for the game?
+
+20
+00:01:05.190 --> 00:01:09.380
+As you can see, having another preferences
+object doesn't make much sense, and
+
+21
+00:01:09.380 --> 00:01:12.330
+could lead to conflicts or
+inconsistencies.
+
+22
+00:01:12.330 --> 00:01:15.640
+Another goal of the Singleton design
+pattern is that the single object is
+
+23
+00:01:15.640 --> 00:01:17.510
+globally accessible within the program.
+
+24
+00:01:18.620 --> 00:01:22.290
+Now that we've discussed the design goal
+of having only one instance of a class,
+
+25
+00:01:22.290 --> 00:01:24.100
+how is this actually implemented?
+
+26
+00:01:24.100 --> 00:01:27.610
+If you're working on a small project on
+your own, you may do this informally.
+
+27
+00:01:27.610 --> 00:01:30.540
+After instantiating a class,
+you make a mental note to yourself not
+
+28
+00:01:30.540 --> 00:01:33.990
+to create another instance, and
+the problem is solved, sort of.
+
+29
+00:01:33.990 --> 00:01:34.730
+If you forget and
+
+30
+00:01:34.730 --> 00:01:38.050
+create another instance, then you
+might cause headaches for yourself.
+
+31
+00:01:38.050 --> 00:01:41.340
+This is also definitely not a workable
+solution in larger projects, or
+
+32
+00:01:41.340 --> 00:01:43.400
+projects with multiple developers.
+
+33
+00:01:43.400 --> 00:01:46.890
+We would like to prevent errors arising
+from multiple objects of a Singleton class
+
+34
+00:01:46.890 --> 00:01:48.420
+being instantiated.
+
+35
+00:01:48.420 --> 00:01:52.650
+The solution is to build this one, and
+only one goal, into the class itself, so
+
+36
+00:01:52.650 --> 00:01:56.150
+that creating another instance of a
+Singleton class is not only frowned upon,
+
+37
+00:01:56.150 --> 00:01:57.370
+but impossible.
+
+38
+00:01:57.370 --> 00:02:00.280
+In this way, you codify your
+design intent within the software.
+
+39
+00:02:01.960 --> 00:02:03.470
+How do you do this?
+
+40
+00:02:03.470 --> 00:02:05.660
+If you have a class with
+a public constructor,
+
+41
+00:02:05.660 --> 00:02:09.280
+this constructor may instantiate
+an object of this class at any time.
+
+42
+00:02:09.280 --> 00:02:12.170
+There's nothing to prevent a different
+part of the software creating another
+
+43
+00:02:12.170 --> 00:02:13.730
+object of this class.
+
+44
+00:02:13.730 --> 00:02:16.420
+Instead, then, you give the class
+a private constructor, so
+
+45
+00:02:16.420 --> 00:02:19.565
+that the constructor cannot be
+called from outside the class.
+
+46
+00:02:19.565 --> 00:02:21.565
+This creates an apparent contradiction.
+
+47
+00:02:21.565 --> 00:02:25.085
+The constructor is private, so
+it cannot be called outside its class.
+
+48
+00:02:25.085 --> 00:02:28.795
+So, how do you create an object of this
+class without a public constructor?
+
+49
+00:02:28.795 --> 00:02:31.010
+There are two key components
+to get around this.
+
+50
+00:02:31.010 --> 00:02:35.805
+The first is to declare a class
+variable called, say, unique instance.
+
+51
+00:02:35.805 --> 00:02:39.650
+This class variable will refer to the one
+instance of your Singleton class.
+
+52
+00:02:39.650 --> 00:02:41.660
+You declare the variable as private, so
+
+53
+00:02:41.660 --> 00:02:44.160
+that it can only be
+modified within the class.
+
+54
+00:02:44.160 --> 00:02:46.810
+The next step is to create a public
+method in the class that will
+
+55
+00:02:46.810 --> 00:02:51.350
+create an instance of this class, but only
+if an instance does not exist already.
+
+56
+00:02:51.350 --> 00:02:53.650
+We can call this method getInstance.
+
+57
+00:02:53.650 --> 00:02:57.420
+This method will first check if
+the uniqueInstance variable is null.
+
+58
+00:02:57.420 --> 00:02:59.840
+If it is null,
+then it will instantiate the class and
+
+59
+00:02:59.840 --> 00:03:02.338
+set this variable to reference the object.
+
+60
+00:03:02.338 --> 00:03:05.980
+If the uniqueInstance class variable
+currently references an object,
+
+61
+00:03:05.980 --> 00:03:08.630
+in other words, if there is
+already an object of this class,
+
+62
+00:03:08.630 --> 00:03:11.178
+then the method will
+simply return that object.
+
+63
+00:03:11.178 --> 00:03:14.590
+Because the getInstance method is public,
+it can be called globally and
+
+64
+00:03:14.590 --> 00:03:16.770
+used to create one instance of the class.
+
+65
+00:03:16.770 --> 00:03:19.630
+In a sense,
+it replaces the normal constructor.
+
+66
+00:03:19.630 --> 00:03:22.088
+Our class now realizes
+the Singleton design pattern,
+
+67
+00:03:22.088 --> 00:03:25.250
+because there can only be one instance
+which is globally accessible.
+
+68
+00:03:26.754 --> 00:03:30.245
+By hiding the regular constructor and
+forcing other classes to, instead,
+
+69
+00:03:30.245 --> 00:03:33.355
+call the public getInstance method,
+we added basic gatekeeping,
+
+70
+00:03:33.355 --> 00:03:36.580
+to ensure that only one object
+of the class is ever created.
+
+71
+00:03:36.580 --> 00:03:39.953
+The very same method is used to
+globally reference the single object,
+
+72
+00:03:39.953 --> 00:03:41.509
+if it has already been created.
+
+73
+00:03:41.509 --> 00:03:44.753
+Now, we can use our Singleton class in
+a large project, and not worry about
+
+74
+00:03:44.753 --> 00:03:48.460
+multiple instances, confusing
+developers and creating conflicts.
+
+75
+00:03:48.460 --> 00:03:51.680
+Another advantage of this version of
+a Singleton class is that the object is
+
+76
+00:03:51.680 --> 00:03:54.120
+not created until it is truly needed.
+
+77
+00:03:54.120 --> 00:03:56.150
+This is called lazy creation.
+
+78
+00:03:56.150 --> 00:03:58.960
+Lazy creation can be helpful
+if the object is large.
+
+79
+00:03:58.960 --> 00:04:03.270
+It is not created until the getInstance
+method is called, which is more efficient.
+
+80
+00:04:03.270 --> 00:04:06.580
+Of course, there can be trade-offs to
+using the Singleton design pattern.
+
+81
+00:04:06.580 --> 00:04:09.700
+If there are multiple computing threads
+running, there could be issues caused by
+
+82
+00:04:09.700 --> 00:04:12.660
+the threads trying to access
+the shared single object.
+
+83
+00:04:12.660 --> 00:04:16.140
+To decide if Singleton, or any other
+design pattern, is the best design for
+
+84
+00:04:16.140 --> 00:04:18.910
+the job, it helps to have
+a good idea of how it works and
+
+85
+00:04:18.910 --> 00:04:20.835
+its potential consequences.
+
+86
+00:04:20.835 --> 00:04:24.880
+Design patterns are defined by their
+purpose or intent, and not the exact code.
+
+87
+00:04:24.880 --> 00:04:27.890
+So, you may see variations of
+how Singleton is realized, but
+
+88
+00:04:27.890 --> 00:04:29.460
+their goal is always the same,
+
+89
+00:04:29.460 --> 00:04:33.285
+to provide global access to a class
+that is restricted to one instance.
+
+90
+00:04:33.285 --> 00:04:36.215
+In general, this is achieve by
+having a private constructor
+
+91
+00:04:36.215 --> 00:04:40.575
+with a public method that instantiates the
+class, if it is not already instantiated.
+
+92
+00:04:41.885 --> 00:04:44.250
+There are many objects that
+we would like only one of.
+
+93
+00:04:44.250 --> 00:04:48.297
+The preferences of an app, the print queue
+of your printer, the software driver for
+
+94
+00:04:48.297 --> 00:04:48.813
+a device.
+
+95
+00:04:48.813 --> 00:04:52.650
+It could be confusing, or even disastrous,
+to have multiples in these cases.
+
+96
+00:04:52.650 --> 00:04:55.600
+The Singleton pattern restricts
+a class to one object by building this
+
+97
+00:04:55.600 --> 00:04:57.030
+intent into the code.
+
+98
+00:04:57.030 --> 00:04:58.963
+It can be a powerful technique on its own,
+
+99
+00:04:58.963 --> 00:05:01.182
+or in combination with
+other design patterns.
+
+100
+00:05:01.182 --> 00:05:05.097
+As you design, think of where you can
+use the Singleton pattern to ensure, for
+
+101
+00:05:05.097 --> 00:05:05.690
+yourself or
+
+102
+00:05:05.690 --> 00:05:09.630
+other developers on the same project,
+that a given class has only one object.

@@ -1,0 +1,389 @@
+WEBVTT
+
+1
+00:00:14.050 --> 00:00:17.075
+I'm sure this looks like a familiar situation.
+
+2
+00:00:17.075 --> 00:00:19.550
+You have a device that expects one sort of connector,
+
+3
+00:00:19.550 --> 00:00:21.680
+but you have something that provides a different connector.
+
+4
+00:00:21.680 --> 00:00:24.020
+Because of the mismatch, you can't make that connection.
+
+5
+00:00:24.020 --> 00:00:26.285
+So, you'll need an adapter to in effect,
+
+6
+00:00:26.285 --> 00:00:29.520
+turn the different connector into one neutral device expects.
+
+7
+00:00:29.520 --> 00:00:32.060
+Adapters are frequently used because different vendors will
+
+8
+00:00:32.060 --> 00:00:34.940
+have different and evolving connectors for their devices.
+
+9
+00:00:34.940 --> 00:00:37.610
+For example, a common connector for a peripheral device,
+
+10
+00:00:37.610 --> 00:00:39.250
+like a keyboard, was once PS2.
+
+11
+00:00:39.250 --> 00:00:43.445
+But computers in the mid-1990's started to only support USB port,
+
+12
+00:00:43.445 --> 00:00:45.830
+so people who had the older PS2 keyboards
+
+13
+00:00:45.830 --> 00:00:48.850
+needed an adapter to use them with the new computers.
+
+14
+00:00:48.850 --> 00:00:51.380
+This adapter converted a computer's USB port
+
+15
+00:00:51.380 --> 00:00:55.330
+into a connector that the old keyboards could plug into.
+
+16
+00:00:55.330 --> 00:00:59.090
+Software systems also face the same compatibility issue.
+
+17
+00:00:59.090 --> 00:01:00.755
+Instead of having physical connectors,
+
+18
+00:01:00.755 --> 00:01:03.765
+systems will have incompatible software interfaces.
+
+19
+00:01:03.765 --> 00:01:06.080
+That is to say, the output of one system may not
+
+20
+00:01:06.080 --> 00:01:09.140
+conform with the expected input of another system.
+
+21
+00:01:09.140 --> 00:01:11.000
+You'll find that this is a recurring problem when
+
+22
+00:01:11.000 --> 00:01:14.045
+your preexisting system needs to incorporate third-party libraries,
+
+23
+00:01:14.045 --> 00:01:16.100
+or needs to connect to other systems.
+
+24
+00:01:16.100 --> 00:01:19.220
+The adapter design pattern will help facilitate communication between
+
+25
+00:01:19.220 --> 00:01:23.070
+two existing systems by providing a compatible interface.
+
+26
+00:01:23.070 --> 00:01:25.970
+This design pattern is composed of several parts.
+
+27
+00:01:25.970 --> 00:01:27.800
+Let's take a look at what they are.
+
+28
+00:01:27.800 --> 00:01:30.020
+The client class will be part of your system that wants to
+
+29
+00:01:30.020 --> 00:01:32.990
+use a third-party library or external system.
+
+30
+00:01:32.990 --> 00:01:38.215
+The adaptee is a class in the third-party library or external system to be used.
+
+31
+00:01:38.215 --> 00:01:41.150
+The adapter class sits in between the client and the adaptee.
+
+32
+00:01:41.150 --> 00:01:45.605
+It will implement a target interface which is the interface that the client will use.
+
+33
+00:01:45.605 --> 00:01:49.015
+The adapter conforms to what the client is expecting to see.
+
+34
+00:01:49.015 --> 00:01:52.850
+The client sends a request to the adapter using the target interface.
+
+35
+00:01:52.850 --> 00:01:54.680
+The adapter will then translate the request
+
+36
+00:01:54.680 --> 00:01:57.410
+into a message that the adaptee will understand.
+
+37
+00:01:57.410 --> 00:01:58.985
+Once the translation is finished,
+
+38
+00:01:58.985 --> 00:02:04.620
+it will send the translated request to the adaptee.
+
+39
+00:02:04.620 --> 00:02:06.405
+Now let's take a look at how we could implement
+
+40
+00:02:06.405 --> 00:02:09.705
+the adapter design pattern in a specific example.
+
+41
+00:02:09.705 --> 00:02:10.980
+In this example, we have
+
+42
+00:02:10.980 --> 00:02:14.550
+a preexisting WebClient that we want to use to talk to another WebService.
+
+43
+00:02:14.550 --> 00:02:16.880
+A WebClient expects to send any object into
+
+44
+00:02:16.880 --> 00:02:20.395
+request but the service only supports a Json object.
+
+45
+00:02:20.395 --> 00:02:24.555
+We need to use an adapter to convert our object request into Json object.
+
+46
+00:02:24.555 --> 00:02:27.385
+Step one, design the target interface.
+
+47
+00:02:27.385 --> 00:02:29.160
+You create the target interface that
+
+48
+00:02:29.160 --> 00:02:32.595
+your adapter class will be implementing for your client class to use.
+
+49
+00:02:32.595 --> 00:02:37.230
+Step two, implement the target interface with the adapter class.
+
+50
+00:02:37.230 --> 00:02:39.180
+Your adapter provides the methods that will take
+
+51
+00:02:39.180 --> 00:02:42.930
+the client classes object and convert it into a Json object.
+
+52
+00:02:42.930 --> 00:02:45.330
+This means that the adapter can convert any instance of
+
+53
+00:02:45.330 --> 00:02:49.010
+a class that the client can create and send that in a request.
+
+54
+00:02:49.010 --> 00:02:53.405
+The adapter class also handles transferring the translated request to the adaptee.
+
+55
+00:02:53.405 --> 00:02:57.780
+The client class only needs to know about the target interface of the adapter.
+
+56
+00:02:57.780 --> 00:03:02.395
+Step three, send the request from the client to the adapter using the target interface.
+
+57
+00:03:02.395 --> 00:03:06.330
+The WebClient is responsible for doing some work to create your message for you.
+
+58
+00:03:06.330 --> 00:03:10.270
+Since your WebClients normal workflow is to return the object back to the client,
+
+59
+00:03:10.270 --> 00:03:12.120
+you don't want to modify the DoWork method
+
+60
+00:03:12.120 --> 00:03:14.770
+because it may disrupt other parts of your system.
+
+61
+00:03:14.770 --> 00:03:18.600
+Instead, you should allow the WebClient to perform this behavior as normal and then,
+
+62
+00:03:18.600 --> 00:03:21.810
+add in a send message method where you can passing any adapter,
+
+63
+00:03:21.810 --> 00:03:24.480
+the WebService and any message you want to send.
+
+64
+00:03:24.480 --> 00:03:27.804
+In your main program, you need to instantiate the WebAdapter,
+
+65
+00:03:27.804 --> 00:03:29.745
+the WebService and the WebClient.
+
+66
+00:03:29.745 --> 00:03:31.680
+The WebClient deals with the adapter through
+
+67
+00:03:31.680 --> 00:03:34.500
+the WebRequester interface to send to request.
+
+68
+00:03:34.500 --> 00:03:37.755
+Notice how your WebClient doesn't need to know anything about the WebService,
+
+69
+00:03:37.755 --> 00:03:39.745
+like its need for Json objects.
+
+70
+00:03:39.745 --> 00:03:44.790
+The adaptee is hidden from the client by the wrapping adapter class.
+
+71
+00:03:44.790 --> 00:03:48.355
+So, if two interfaces are incompatible,
+
+72
+00:03:48.355 --> 00:03:49.600
+why don't we change one,
+
+73
+00:03:49.600 --> 00:03:52.235
+or even both, so that they are able to talk to each other?
+
+74
+00:03:52.235 --> 00:03:54.175
+Well, if you've noticed on our example,
+
+75
+00:03:54.175 --> 00:03:57.080
+we don't show the implementation of the WebService class.
+
+76
+00:03:57.080 --> 00:03:59.710
+This is because it's meant to represent a third-party library or
+
+77
+00:03:59.710 --> 00:04:02.885
+external system that we may not have direct access to.
+
+78
+00:04:02.885 --> 00:04:05.710
+If we did have direct access to those libraries or systems,
+
+79
+00:04:05.710 --> 00:04:08.755
+adaptee by the vendors may make our changes inconsequential,
+
+80
+00:04:08.755 --> 00:04:12.230
+or our changes may actually break those libraries or systems.
+
+81
+00:04:12.230 --> 00:04:16.230
+Then why don't we just change our system's interface? Well, that might work.
+
+82
+00:04:16.230 --> 00:04:18.145
+But what if a subsystem is using it?
+
+83
+00:04:18.145 --> 00:04:22.355
+Changing assumptions like this can inadvertently break another part of our system.
+
+84
+00:04:22.355 --> 00:04:25.030
+Remember, that an adapter is meant to wrap
+
+85
+00:04:25.030 --> 00:04:28.225
+the adaptee and expose a target interface to the client,
+
+86
+00:04:28.225 --> 00:04:31.450
+indirectly change the adaptee's interface into one that the client is
+
+87
+00:04:31.450 --> 00:04:34.490
+expecting by implementing a target interface,
+
+88
+00:04:34.490 --> 00:04:38.185
+indirectly translate the client's request into one the adaptee is expecting,
+
+89
+00:04:38.185 --> 00:04:43.030
+and reuse an existing adaptee with an incompatible interface.
+
+90
+00:04:43.030 --> 00:04:46.180
+It isn't always practical to rewrite large chunks of your system in order
+
+91
+00:04:46.180 --> 00:04:49.780
+to properly interface with new third-party libraries or external systems.
+
+92
+00:04:49.780 --> 00:04:53.050
+Just because an interface doesn't conform to what your system is expecting,
+
+93
+00:04:53.050 --> 00:04:55.150
+doesn't mean that your system has to change.
+
+94
+00:04:55.150 --> 00:04:57.670
+The adapter design pattern is a technique that helps
+
+95
+00:04:57.670 --> 00:05:00.700
+bridge the gap between two incompatible interfaces.
+
+96
+00:05:00.700 --> 00:05:02.110
+This will let you continue to use
+
+97
+00:05:02.110 --> 00:05:06.780
+your existing systems and integrate external sources into them.

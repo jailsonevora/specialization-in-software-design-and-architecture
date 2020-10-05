@@ -1,0 +1,551 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:10.000
+[MUSIC]
+
+2
+00:00:15.032 --> 00:00:16.830
+Buildings are composed of rooms.
+
+3
+00:00:16.830 --> 00:00:19.200
+Although buildings and
+rooms have slightly different functions,
+
+4
+00:00:19.200 --> 00:00:22.040
+we essentially treat them as
+generic housing structures.
+
+5
+00:00:22.040 --> 00:00:24.040
+You can enter and
+exit a building or a room, and
+
+6
+00:00:24.040 --> 00:00:26.340
+they can both be used
+to store furnishings.
+
+7
+00:00:26.340 --> 00:00:30.200
+So despite being unique types of objects,
+they can be dealt with uniformly.
+
+8
+00:00:30.200 --> 00:00:32.820
+The Composite Design Pattern
+achieves two goals.
+
+9
+00:00:32.820 --> 00:00:36.250
+To compose nested structures of objects,
+and to deal with the classes for
+
+10
+00:00:36.250 --> 00:00:38.110
+these objects uniformly.
+
+11
+00:00:38.110 --> 00:00:39.880
+The pattern follows this basic design.
+
+12
+00:00:40.950 --> 00:00:44.690
+A component interface serves as
+the supertype for a set of classes so
+
+13
+00:00:44.690 --> 00:00:47.210
+that they can all be dealt with uniformly.
+
+14
+00:00:47.210 --> 00:00:50.150
+This is done by enforcing polymorphism.
+
+15
+00:00:50.150 --> 00:00:53.660
+All implementing classes
+conform to the same interface.
+
+16
+00:00:53.660 --> 00:00:56.890
+An abstract superclass can also
+be used in placed of an interface
+
+17
+00:00:56.890 --> 00:00:59.250
+as both are allowed for polymorphism.
+
+18
+00:00:59.250 --> 00:01:01.760
+But we'll focus on using
+an interface here.
+
+19
+00:01:01.760 --> 00:01:04.330
+The composite class is used
+to aggregate any class that
+
+20
+00:01:04.330 --> 00:01:06.380
+implements the component interface.
+
+21
+00:01:06.380 --> 00:01:09.420
+The composite class will allow you
+to traverse through and potentially
+
+22
+00:01:09.420 --> 00:01:13.370
+manipulate the component objects
+that the composite object contains.
+
+23
+00:01:13.370 --> 00:01:16.370
+The leaf class represents
+a non-composite type.
+
+24
+00:01:16.370 --> 00:01:19.020
+It is not composed of other components.
+
+25
+00:01:19.020 --> 00:01:22.870
+Next, we want to deal with non-composite
+and composite objects uniformly.
+
+26
+00:01:24.208 --> 00:01:28.330
+By having the leaf class and composite
+class implement the component interface,
+
+27
+00:01:28.330 --> 00:01:30.480
+we unify them with a single type.
+
+28
+00:01:30.480 --> 00:01:34.770
+The composite and leaf classes are now
+considered subtypes of component.
+
+29
+00:01:34.770 --> 00:01:37.597
+Depending on the problem,
+you can have other composite and
+
+30
+00:01:37.597 --> 00:01:40.370
+leaf classes when using
+the composite design pattern.
+
+31
+00:01:40.370 --> 00:01:44.680
+But only one overall component interface,
+or abstract super class.
+
+32
+00:01:44.680 --> 00:01:48.590
+Note that a composite object can
+contain other composite objects,
+
+33
+00:01:48.590 --> 00:01:51.640
+since the composite class
+is a sub type of component.
+
+34
+00:01:51.640 --> 00:01:54.950
+This is known as Recursive Composition,
+which is another name for
+
+35
+00:01:54.950 --> 00:01:56.700
+this design pattern.
+
+36
+00:01:56.700 --> 00:02:00.190
+It can be difficult and confusing to
+imagine how this design pattern actually
+
+37
+00:02:00.190 --> 00:02:04.170
+looks like because of the apparent
+cyclical nature of the composite class.
+
+38
+00:02:04.170 --> 00:02:07.100
+The easiest way to visualize it
+is by thinking of it like a tree.
+
+39
+00:02:08.550 --> 00:02:10.830
+At the root level,
+we have our main composite object,
+
+40
+00:02:10.830 --> 00:02:13.480
+which is made up of
+other component objects.
+
+41
+00:02:13.480 --> 00:02:17.340
+At each level, we can add more
+components below each composite object,
+
+42
+00:02:17.340 --> 00:02:19.670
+like another composite or a leaf.
+
+43
+00:02:19.670 --> 00:02:24.370
+Note that you can only add components to
+a composite object and not a leaf object.
+
+44
+00:02:24.370 --> 00:02:27.960
+This means that a composite object
+has the potential to grow the tree,
+
+45
+00:02:27.960 --> 00:02:31.570
+while a leaf object effectively
+ends the tree where it is.
+
+46
+00:02:31.570 --> 00:02:35.160
+The composite design pattern
+is used to address two issues.
+
+47
+00:02:35.160 --> 00:02:39.621
+How do we use individual types of
+objects to build a tree-like structure,
+
+48
+00:02:39.621 --> 00:02:43.150
+and how can we treat the individual
+types of objects uniformly without
+
+49
+00:02:43.150 --> 00:02:44.060
+checking their types?
+
+50
+00:02:46.746 --> 00:02:50.272
+Now that we know what the UML class
+diagram of a composite design pattern
+
+51
+00:02:50.272 --> 00:02:53.580
+looks like and how to interpret it,
+let's apply it to an example.
+
+52
+00:02:53.580 --> 00:02:57.720
+We will use the earlier example of how
+buildings are composed of generic housing
+
+53
+00:02:57.720 --> 00:02:58.990
+structures.
+
+54
+00:02:58.990 --> 00:03:01.740
+This structure is considered
+the component interface.
+
+55
+00:03:01.740 --> 00:03:04.308
+It can be use to describe a building,
+a floor, or
+
+56
+00:03:04.308 --> 00:03:07.459
+a room despite each of these
+being unique types of objects.
+
+57
+00:03:07.459 --> 00:03:10.320
+The housing class is the composite class.
+
+58
+00:03:10.320 --> 00:03:14.450
+A housing is a type of structure,
+which could also contain other structures.
+
+59
+00:03:14.450 --> 00:03:18.120
+This means that a housing object
+could contain other housing objects.
+
+60
+00:03:18.120 --> 00:03:21.460
+For example, a building could be
+represented by a housing object, and
+
+61
+00:03:21.460 --> 00:03:23.450
+the building could contain floors.
+
+62
+00:03:23.450 --> 00:03:26.650
+Each floor could be represented
+by another housing object.
+
+63
+00:03:26.650 --> 00:03:29.580
+We can traverse through the building from
+floor to floor because the building is
+
+64
+00:03:29.580 --> 00:03:33.110
+composed of floors,
+all of which are housing objects.
+
+65
+00:03:33.110 --> 00:03:37.620
+A room is considered a leaf class since
+a room can not contain another room.
+
+66
+00:03:37.620 --> 00:03:40.200
+It is contained within a housing
+like the floor of a building.
+
+67
+00:03:41.320 --> 00:03:44.970
+We now have a UML class diagram that
+expresses how to model buildings
+
+68
+00:03:44.970 --> 00:03:47.400
+being made up of housing and
+room types of structures.
+
+69
+00:03:48.406 --> 00:03:53.470
+Next, let's realize the composite design
+pattern for the building example in JAVA.
+
+70
+00:03:53.470 --> 00:03:57.500
+Step one, design the interface
+that defines the overall type.
+
+71
+00:03:57.500 --> 00:03:59.890
+We start off by defining
+the interface that the composite and
+
+72
+00:03:59.890 --> 00:04:01.760
+leaf classes will implement.
+
+73
+00:04:01.760 --> 00:04:04.579
+This supports polymorphism for
+your component and leaf class.
+
+74
+00:04:05.650 --> 00:04:08.755
+Step two, implement the composite class.
+
+75
+00:04:08.755 --> 00:04:11.370
+You implement the interface
+in the composite class.
+
+76
+00:04:11.370 --> 00:04:15.340
+This will give the housing class it's
+own behavior when client code uses it.
+
+77
+00:04:15.340 --> 00:04:18.250
+Since our housing object can be
+composed of other structures,
+
+78
+00:04:18.250 --> 00:04:21.490
+you'll need to represent this
+containment with a suitable collection.
+
+79
+00:04:21.490 --> 00:04:25.130
+You will also need a method for adding
+more components to your composite object.
+
+80
+00:04:25.130 --> 00:04:27.380
+Here, we have used
+a private array list and
+
+81
+00:04:27.380 --> 00:04:29.680
+changed it only through
+the public add structure method.
+
+82
+00:04:30.800 --> 00:04:33.510
+To traverse through the components
+of a composite object,
+
+83
+00:04:33.510 --> 00:04:36.330
+you must be able to retrieve
+the components when asked.
+
+84
+00:04:36.330 --> 00:04:39.270
+You can also include additional methods
+which will help with the management of
+
+85
+00:04:39.270 --> 00:04:40.760
+component objects.
+
+86
+00:04:40.760 --> 00:04:43.530
+It is up to you to decide what else
+to include in your composite class.
+
+87
+00:04:44.570 --> 00:04:48.000
+Step three, implement the leaf class.
+
+88
+00:04:48.000 --> 00:04:51.310
+Since the leaf class doesn't contain
+any components, we don't need to add
+
+89
+00:04:51.310 --> 00:04:55.330
+a collection of components to it or any
+methods to manage a component collection.
+
+90
+00:04:55.330 --> 00:04:57.909
+We simply need to implement the methods
+of the I structure interface.
+
+91
+00:04:59.570 --> 00:05:02.360
+Now that we've finished implementing
+our building using the composite design
+
+92
+00:05:02.360 --> 00:05:04.800
+pattern, how do we actually use it?
+
+93
+00:05:04.800 --> 00:05:08.050
+We simply construct our building
+structure by structure.
+
+94
+00:05:08.050 --> 00:05:08.733
+In this example,
+
+95
+00:05:08.733 --> 00:05:11.701
+our building has one floor, which
+contains a common room and two washrooms.
+
+96
+00:05:11.701 --> 00:05:13.894
+This is obviously very simplistic, but
+
+97
+00:05:13.894 --> 00:05:17.830
+it gives you an idea how powerful
+this design pattern can be.
+
+98
+00:05:17.830 --> 00:05:20.780
+Composite objects can be built quickly and
+easily.
+
+99
+00:05:20.780 --> 00:05:23.470
+Each component can be expected to
+have the same set of behaviors
+
+100
+00:05:23.470 --> 00:05:25.140
+without needing to do any type checking.
+
+101
+00:05:27.975 --> 00:05:31.644
+To summarize, the composite design pattern
+is used to solve the issues of how to
+
+102
+00:05:31.644 --> 00:05:33.781
+build a tree-like structure of objects,
+and
+
+103
+00:05:33.781 --> 00:05:37.270
+how to treat the individual types
+of those objects uniformly.
+
+104
+00:05:37.270 --> 00:05:40.100
+This is achieved by enforcing polymorphism
+
+105
+00:05:40.100 --> 00:05:44.670
+across each class through implementing an
+interface or inheriting from a superclass.
+
+106
+00:05:44.670 --> 00:05:47.780
+And using a technique called
+recursive composition,
+
+107
+00:05:47.780 --> 00:05:51.830
+which allows objects to be composed of
+other objects that are of a common type.
+
+108
+00:05:51.830 --> 00:05:54.810
+You can think of this design pattern
+as applying the decomposition and
+
+109
+00:05:54.810 --> 00:05:58.790
+generalization object-oriented design
+principles together to break a whole into
+
+110
+00:05:58.790 --> 00:06:03.000
+parts, but having the whole and
+parts both conform to a common type.
+
+111
+00:06:03.000 --> 00:06:06.210
+The composite design pattern lets
+you build complex structures
+
+112
+00:06:06.210 --> 00:06:08.500
+by constructing them using
+composite objects and
+
+113
+00:06:08.500 --> 00:06:11.740
+leaf objects which belong to
+a unified component type.
+
+114
+00:06:11.740 --> 00:06:15.063
+This makes it easier to understand and
+manipulate the structure, and
+
+115
+00:06:15.063 --> 00:06:18.058
+will lead to more readable,
+reusable, and meaningful code.

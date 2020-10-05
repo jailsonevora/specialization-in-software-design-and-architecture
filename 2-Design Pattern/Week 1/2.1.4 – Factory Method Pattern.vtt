@@ -1,0 +1,1007 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:10.000
+[MUSIC]
+
+2
+00:00:15.261 --> 00:00:17.916
+Now we're going to talk about
+another creational pattern,
+
+3
+00:00:17.916 --> 00:00:19.224
+the factory method pattern.
+
+4
+00:00:19.224 --> 00:00:22.330
+Along the way,
+we will also learn about a factory object.
+
+5
+00:00:22.330 --> 00:00:23.770
+Just like a factory in the real world,
+
+6
+00:00:23.770 --> 00:00:27.970
+the purpose of these factories in object
+oriented programming is to create objects.
+
+7
+00:00:27.970 --> 00:00:30.380
+Using factories,
+makes your software easier to maintain and
+
+8
+00:00:30.380 --> 00:00:33.880
+change because object creation
+happens in the factories.
+
+9
+00:00:33.880 --> 00:00:37.430
+The methods that use these factories
+can focus on other behavior.
+
+10
+00:00:37.430 --> 00:00:40.240
+Imagine that your software
+implements an online store and
+
+11
+00:00:40.240 --> 00:00:42.810
+that you want to create
+objects to sell in that store.
+
+12
+00:00:42.810 --> 00:00:44.850
+Let's use a KnifeStore, for example.
+
+13
+00:00:44.850 --> 00:00:46.670
+There are many different types of knives,
+but
+
+14
+00:00:46.670 --> 00:00:48.980
+let's start with SteakKnives and
+ChefsKnives.
+
+15
+00:00:48.980 --> 00:00:52.840
+You have a superclass knife with
+subclasses SteakKnife and ChefsKnife.
+
+16
+00:00:53.930 --> 00:00:55.600
+You write a method to order a knife,
+
+17
+00:00:55.600 --> 00:00:59.530
+which will first create one of these knife
+objects, and then prepare it for shipment.
+
+18
+00:00:59.530 --> 00:01:03.600
+Let's say that the preparations it
+performs on the knife are sharpen, polish,
+
+19
+00:01:03.600 --> 00:01:04.900
+and package.
+
+20
+00:01:04.900 --> 00:01:06.140
+Your method looks like this.
+
+21
+00:01:07.620 --> 00:01:09.950
+The method,
+first declares a knife variable,
+
+22
+00:01:09.950 --> 00:01:12.450
+which will refer to the knife
+object to be created.
+
+23
+00:01:12.450 --> 00:01:16.370
+The conditionals determine which subclass
+of knife is actually instantiated.
+
+24
+00:01:16.370 --> 00:01:19.160
+The act of actually instantiating
+a class to create an object of
+
+25
+00:01:19.160 --> 00:01:22.430
+a specific type is called
+concrete instantiation.
+
+26
+00:01:22.430 --> 00:01:26.480
+In Java, you usually do concrete
+instantiation with a new operator.
+
+27
+00:01:26.480 --> 00:01:27.240
+You will see on C,
+
+28
+00:01:27.240 --> 00:01:31.290
+that concrete instantiation will be
+the primary purpose for our factories.
+
+29
+00:01:31.290 --> 00:01:34.505
+The next step is to call some methods that
+are common to the different types of knife
+
+30
+00:01:34.505 --> 00:01:37.780
+objects, sharpen, polish and package.
+
+31
+00:01:37.780 --> 00:01:40.660
+These methods do not care what
+type of knife is created,
+
+32
+00:01:40.660 --> 00:01:42.270
+all they want is a knife to operate on.
+
+33
+00:01:43.400 --> 00:01:47.200
+Imagine that your store adds more and
+more knife types as its sales improve.
+
+34
+00:01:47.200 --> 00:01:51.610
+New subclasses are added as needed,
+bread knife, paring knife, etc.
+
+35
+00:01:51.610 --> 00:01:52.350
+In this example,
+
+36
+00:01:52.350 --> 00:01:55.440
+the list of conditionals grows and
+grows as new knife types are added.
+
+37
+00:01:56.560 --> 00:01:59.990
+Notice that what we do with a knife
+after creating it doesn't change.
+
+38
+00:01:59.990 --> 00:02:03.800
+All of these knives need to be sharpened,
+polished, and packaged.
+
+39
+00:02:03.800 --> 00:02:05.540
+This is all getting pretty complicated.
+
+40
+00:02:05.540 --> 00:02:07.370
+What if instead of making
+your knives in the store,
+
+41
+00:02:07.370 --> 00:02:08.920
+you could make them somewhere else?
+
+42
+00:02:10.540 --> 00:02:13.920
+Just as in the real world,
+objects are usually made in factories.
+
+43
+00:02:13.920 --> 00:02:15.310
+We can create a factory object,
+
+44
+00:02:15.310 --> 00:02:18.850
+whose role is to create product
+objects of particular types.
+
+45
+00:02:18.850 --> 00:02:20.500
+So the sharpening, polishing and
+
+46
+00:02:20.500 --> 00:02:23.430
+packaging will stay where it
+is in the orderKnife method.
+
+47
+00:02:23.430 --> 00:02:26.790
+But you will delegate the responsibility
+of product object creation to
+
+48
+00:02:26.790 --> 00:02:29.410
+another object, a KnifeFactory.
+
+49
+00:02:29.410 --> 00:02:32.540
+You're going to move the code for
+deciding which type of knife to create and
+
+50
+00:02:32.540 --> 00:02:36.270
+the code for deciding which subclass of
+knife to instantiate into the class for
+
+51
+00:02:36.270 --> 00:02:37.730
+this factory.
+
+52
+00:02:37.730 --> 00:02:41.380
+The class for a KnifeFactory is shown
+here with the create Knife method.
+
+53
+00:02:41.380 --> 00:02:44.820
+Some other code will instantiate
+a KnifeFactory object, but once done,
+
+54
+00:02:44.820 --> 00:02:49.080
+you can use it to create knife method to
+make knife objects of particular types.
+
+55
+00:02:49.080 --> 00:02:52.064
+This is almost the exact same code
+you use to create a knife object in
+
+56
+00:02:52.064 --> 00:02:53.142
+the previous example.
+
+57
+00:02:53.142 --> 00:02:57.060
+It is just been moved into a method of
+a new class called the KnifeFactory.
+
+58
+00:02:57.060 --> 00:03:00.744
+In general, a factory object is
+an instance of such a class which has
+
+59
+00:03:00.744 --> 00:03:02.759
+a method to create product objects.
+
+60
+00:03:02.759 --> 00:03:06.866
+Now this KnifeFactory can be used by
+the KnifeStore class, in other words,
+
+61
+00:03:06.866 --> 00:03:10.340
+the KnifeStore is now
+a client of the KnifeFactory.
+
+62
+00:03:10.340 --> 00:03:11.261
+Look at this example.
+
+63
+00:03:12.571 --> 00:03:16.233
+In this example, the KnifeFactory object
+here used is passed into the constructor
+
+64
+00:03:16.233 --> 00:03:17.461
+for the KnifeStore class.
+
+65
+00:03:17.461 --> 00:03:20.630
+The orderKnife method is
+very similar to before.
+
+66
+00:03:20.630 --> 00:03:24.509
+However, instead of performing
+concrete instantiation itself,
+
+67
+00:03:24.509 --> 00:03:27.102
+it delegates its task
+to the factory object.
+
+68
+00:03:27.102 --> 00:03:28.590
+What have you gained?
+
+69
+00:03:28.590 --> 00:03:30.086
+First of all, the KnifeStore and
+
+70
+00:03:30.086 --> 00:03:33.850
+its orderKnife method may not be
+the only client of your KnifeFactory.
+
+71
+00:03:33.850 --> 00:03:37.580
+Other clients, may use knife factories
+to create knives for other purposes.
+
+72
+00:03:37.580 --> 00:03:40.760
+Maybe there's a method for
+bulk orders or quality testing.
+
+73
+00:03:40.760 --> 00:03:43.970
+Since all of the actual knife
+creation happens in the KnifeFactory,
+
+74
+00:03:43.970 --> 00:03:47.060
+you can simply add new knife types to
+your KnifeFactory without modifying
+
+75
+00:03:47.060 --> 00:03:48.500
+the client code.
+
+76
+00:03:48.500 --> 00:03:51.880
+If there are multiple clients that want
+to instantiate the same set of classes,
+
+77
+00:03:51.880 --> 00:03:55.120
+then by using a Factory object,
+you have cut out redundant code and
+
+78
+00:03:55.120 --> 00:03:57.390
+made the software easier to modify.
+
+79
+00:03:57.390 --> 00:04:00.761
+Instead of hunting down multiple
+snippets of similar instantiation code.
+
+80
+00:04:00.761 --> 00:04:01.725
+You can simply add or
+
+81
+00:04:01.725 --> 00:04:05.590
+remove the particular subclasses
+to instantiate in your factory.
+
+82
+00:04:05.590 --> 00:04:08.310
+If you change the way that
+subclasses are instantiated,
+
+83
+00:04:08.310 --> 00:04:11.940
+you only need to change your
+factory rather than every client.
+
+84
+00:04:11.940 --> 00:04:13.710
+Look at the orderKnife method.
+
+85
+00:04:13.710 --> 00:04:17.380
+As far as it's considered, as long as it
+receives a knife object from the factory,
+
+86
+00:04:17.380 --> 00:04:19.690
+it can satisfy it's responsibilities.
+
+87
+00:04:19.690 --> 00:04:23.280
+This allows the developer to make changes
+to the concrete instantiation without
+
+88
+00:04:23.280 --> 00:04:24.850
+touching the client method.
+
+89
+00:04:24.850 --> 00:04:28.040
+The client method does not need
+to name concrete knife classes.
+
+90
+00:04:28.040 --> 00:04:30.660
+And now deals with knife generalization.
+
+91
+00:04:30.660 --> 00:04:34.510
+This is called coding to an interface,
+not an implementation.
+
+92
+00:04:34.510 --> 00:04:36.560
+Think of this like a real life factory.
+
+93
+00:04:36.560 --> 00:04:38.580
+Usually, when a store
+is selling something,
+
+94
+00:04:38.580 --> 00:04:42.390
+like the knife in our example,
+the store itself does not make that item.
+
+95
+00:04:42.390 --> 00:04:45.062
+Instead, the store gets their
+knives from a KnifeFactory.
+
+96
+00:04:45.062 --> 00:04:48.040
+This KnifeFactory makes knives for
+the store, but
+
+97
+00:04:48.040 --> 00:04:52.020
+may also have other clients,
+such as other stores that need knives.
+
+98
+00:04:52.020 --> 00:04:54.020
+If the factory changes
+the way it makes knives,
+
+99
+00:04:54.020 --> 00:04:57.660
+then the stores don't care as long as
+they receive knives of the right type.
+
+100
+00:04:57.660 --> 00:05:00.680
+Perhaps the blade material changes or
+the handles change shape.
+
+101
+00:05:00.680 --> 00:05:03.020
+These changes are made in the factory,
+not in the store.
+
+102
+00:05:04.760 --> 00:05:09.130
+Okay, so we can use a factory object
+to instantiate product objects.
+
+103
+00:05:09.130 --> 00:05:10.843
+Although it is a useful technique,
+
+104
+00:05:10.843 --> 00:05:14.391
+the Factory Object is not actually one
+of the gang of four design pattern.
+
+105
+00:05:14.391 --> 00:05:16.810
+Let's take a look at
+the Factory Method Pattern.
+
+106
+00:05:16.810 --> 00:05:19.940
+The Factory Method Pattern approaches
+the creation of specific types
+
+107
+00:05:19.940 --> 00:05:21.890
+of objects in a different way.
+
+108
+00:05:21.890 --> 00:05:25.992
+Instead of using a separate object,
+a Factory Object to create the objects.
+
+109
+00:05:25.992 --> 00:05:30.470
+The Factory Method uses a separate method
+in a same class to create the objects.
+
+110
+00:05:30.470 --> 00:05:33.540
+You're going to see that the power of
+the Factory Method comes from the way it
+
+111
+00:05:33.540 --> 00:05:35.900
+creates specific knife products.
+
+112
+00:05:35.900 --> 00:05:37.950
+To create specialized product objects,
+
+113
+00:05:37.950 --> 00:05:41.370
+a Factory Object approach which
+would sub class the factory class.
+
+114
+00:05:41.370 --> 00:05:45.361
+For example, a subclass of our
+KnifeFactory, called BudgetKnifeFactory,
+
+115
+00:05:45.361 --> 00:05:49.748
+could create uBdgetChefsKnives, and
+BudgetSteakKnife product objects.
+
+116
+00:05:49.748 --> 00:05:53.482
+A QualityKnifeFactory could creat
+QualityChefsKnife objects, or
+
+117
+00:05:53.482 --> 00:05:56.380
+QualitSteakKnife product objects.
+
+118
+00:05:56.380 --> 00:06:00.731
+A Factory Method approach instead has a
+budget knife store subclass of KnifeStore,
+
+119
+00:06:00.731 --> 00:06:02.642
+the budget KnifeStore has a method.
+
+120
+00:06:02.642 --> 00:06:06.434
+The Factory Method that is responsible for
+creating BudgetChefsKnife and
+
+121
+00:06:06.434 --> 00:06:09.650
+BudgetSteakKnife product objects instead.
+
+122
+00:06:09.650 --> 00:06:13.780
+The Factory Method design intent is to
+define and interface for creating objects,
+
+123
+00:06:13.780 --> 00:06:16.739
+but let the subclasses decide
+which class to instantiate.
+
+124
+00:06:16.739 --> 00:06:17.840
+What does this look like?
+
+125
+00:06:19.430 --> 00:06:21.319
+Let's look at the KnifeStore
+superclass first.
+
+126
+00:06:22.800 --> 00:06:25.300
+First of all, KnifeStore is now abstract.
+
+127
+00:06:25.300 --> 00:06:27.940
+This means we cannot
+instantiate a KnifeStore.
+
+128
+00:06:27.940 --> 00:06:32.386
+Instead, you will need to have KnifeStore
+subclasses, such as budget KnifeStore or
+
+129
+00:06:32.386 --> 00:06:33.570
+quality KnifeStore.
+
+130
+00:06:34.960 --> 00:06:38.140
+These subclasses will inherit
+the same order knife method.
+
+131
+00:06:38.140 --> 00:06:41.050
+It is declared in the super class,
+but it's abstract and empty.
+
+132
+00:06:42.640 --> 00:06:45.400
+We left the Factory Method empty and
+called it abstract,
+
+133
+00:06:45.400 --> 00:06:49.070
+because we want the Factory Method
+to be defined by the subclasses.
+
+134
+00:06:49.070 --> 00:06:54.570
+Whenever a KnifeStore subclass is defined,
+it must define this createKnife method.
+
+135
+00:06:54.570 --> 00:06:58.694
+Let's take a look at what
+a KnifeStore subclass looks like.
+
+136
+00:06:58.694 --> 00:07:01.610
+Now you would instantiate
+a BudgetKnifeStore.
+
+137
+00:07:01.610 --> 00:07:05.130
+The BudgetKnifeStore has its own
+method for creating knife objects.
+
+138
+00:07:05.130 --> 00:07:08.210
+A different knife store such as
+QualityKnifeStore would have a different
+
+139
+00:07:08.210 --> 00:07:09.550
+Factory Method.
+
+140
+00:07:09.550 --> 00:07:12.833
+You can't define a new KnifeStore
+subclass without providing this method.
+
+141
+00:07:14.532 --> 00:07:17.958
+Because the BudgetKnifeStore
+is a subclass of KnifeStore,
+
+142
+00:07:17.958 --> 00:07:20.060
+it inherits the orderKnife method.
+
+143
+00:07:20.060 --> 00:07:23.665
+You run the common orderKnife method
+from any subclass of KnifeStore.
+
+144
+00:07:26.010 --> 00:07:29.660
+All the subclasses of KnifeStore,
+BudgetKnifeStore, QualityKnifeStore,
+
+145
+00:07:29.660 --> 00:07:32.850
+maybe FamilyKnifeStore,
+inherit the orderKnife method.
+
+146
+00:07:32.850 --> 00:07:36.620
+However, each subclass must define
+its own create knife method.
+
+147
+00:07:36.620 --> 00:07:40.072
+Let's take at the UML class diagram for
+one KnifeStore.
+
+148
+00:07:40.072 --> 00:07:43.360
+The UML class diagram gives you
+some important information.
+
+149
+00:07:43.360 --> 00:07:48.910
+First of all both Knife and KnifeStore
+are italicized to denote abstract classes.
+
+150
+00:07:48.910 --> 00:07:51.720
+You cannot instantiate these
+classes directly you must define
+
+151
+00:07:51.720 --> 00:07:53.390
+subclasses of them.
+
+152
+00:07:53.390 --> 00:07:57.260
+The UML diagram shows only one subclass
+of knife but there could be more.
+
+153
+00:07:57.260 --> 00:07:59.920
+BudgetChefsKnife, BudgetParingKnife, etc.
+
+154
+00:07:59.920 --> 00:08:03.220
+We could also have more than one
+KnifeStore, maybe QualityKnifeStore or
+
+155
+00:08:03.220 --> 00:08:06.250
+FamilyKnifeStore which would
+make other types of knives.
+
+156
+00:08:06.250 --> 00:08:09.350
+The createKnife method is
+also abstract in KnifeStore.
+
+157
+00:08:09.350 --> 00:08:12.900
+This means that any subclass of
+KnifeStore must define this method.
+
+158
+00:08:12.900 --> 00:08:14.400
+So BudgetKnifeStore and
+
+159
+00:08:14.400 --> 00:08:18.580
+any other KnifeStore subclass we define
+must have its own createKnife method.
+
+160
+00:08:18.580 --> 00:08:20.619
+This is the core of
+the Factory Method design pattern.
+
+161
+00:08:23.930 --> 00:08:27.110
+The Factory Method pattern always
+follows the same general structure.
+
+162
+00:08:27.110 --> 00:08:28.680
+Let's check out the UML class diagram.
+
+163
+00:08:29.750 --> 00:08:31.680
+We have an abstract creator class.
+
+164
+00:08:31.680 --> 00:08:34.969
+This class contains methods that
+only operate on generalization.
+
+165
+00:08:34.969 --> 00:08:38.251
+In other words, as long as we give these
+methods the products they want to operate
+
+166
+00:08:38.251 --> 00:08:39.680
+on, they're happy.
+
+167
+00:08:39.680 --> 00:08:40.370
+In our example,
+
+168
+00:08:40.370 --> 00:08:44.600
+the product was knife, the creator also
+declares the Factory Method abstractly.
+
+169
+00:08:44.600 --> 00:08:48.521
+So that each concrete creator class is
+obliged to provide a Factory Method.
+
+170
+00:08:48.521 --> 00:08:52.060
+The concrete creator is a subclass
+of the abstract, creator.
+
+171
+00:08:52.060 --> 00:08:56.290
+We call it a concrete creator, because it
+is responsible for concrete instantiation.
+
+172
+00:08:56.290 --> 00:08:58.500
+The actual act of creating objects.
+
+173
+00:08:58.500 --> 00:09:02.690
+The concrete creator also inherits
+methods from the abstract method.
+
+174
+00:09:02.690 --> 00:09:06.070
+Factory Method is a method in
+our concrete creator subclass.
+
+175
+00:09:06.070 --> 00:09:09.303
+Everytime the developer adds a concrete
+creator subclass to the design.
+
+176
+00:09:09.303 --> 00:09:12.271
+They must define a factory method
+to make the right products.
+
+177
+00:09:12.271 --> 00:09:15.860
+This is how the subclass
+decides how to create objects.
+
+178
+00:09:15.860 --> 00:09:18.740
+The product superclass which
+was knife in our example
+
+179
+00:09:18.740 --> 00:09:21.390
+generalizes the concrete products.
+
+180
+00:09:21.390 --> 00:09:23.135
+As far as the creator class is concerned,
+
+181
+00:09:23.135 --> 00:09:27.540
+it's methods only operate on the general
+product never the concrete products.
+
+182
+00:09:27.540 --> 00:09:29.690
+The concrete products are made
+by the Concrete Creator.
+
+183
+00:09:30.720 --> 00:09:34.290
+The type of product made is decided
+by which CCcreator is made.
+
+184
+00:09:34.290 --> 00:09:38.640
+In our example, the BudgetKnifeStore made
+BudgetChefsKnife and BudgetSteakKnife.
+
+185
+00:09:38.640 --> 00:09:42.165
+Well the QualityKnifeStore can make
+QualityChefsKnife or QualitySteakKnife.
+
+186
+00:09:44.142 --> 00:09:47.255
+In this lesson, we cover
+the Factory Method, the design pattern and
+
+187
+00:09:47.255 --> 00:09:48.620
+Factory Object.
+
+188
+00:09:48.620 --> 00:09:50.300
+A Factory is generally a method or
+
+189
+00:09:50.300 --> 00:09:52.910
+an object that allows you
+to create other objects.
+
+190
+00:09:52.910 --> 00:09:56.850
+Remember that the active object creation
+usually with a new keyword in Java
+
+191
+00:09:56.850 --> 00:09:59.730
+is called concrete instantiation.
+
+192
+00:09:59.730 --> 00:10:03.220
+Factories allow client code to
+operate on generalizations,
+
+193
+00:10:03.220 --> 00:10:06.970
+this is called coding to an interface,
+not an implementation.
+
+194
+00:10:06.970 --> 00:10:11.430
+As long as the client code receives the
+object it expects, a knife in our example.
+
+195
+00:10:11.430 --> 00:10:14.947
+It can satisfy its responsibilities
+without worrying about the details of
+
+196
+00:10:14.947 --> 00:10:15.851
+object creation.
+
+197
+00:10:15.851 --> 00:10:20.950
+A Factory Object may be a useful tool It
+is an object that creates other objects.
+
+198
+00:10:20.950 --> 00:10:24.840
+It can be useful if many parts of the
+software want to create the same objects.
+
+199
+00:10:24.840 --> 00:10:28.500
+You can even create specialized factories
+by having subclasses of the factory class.
+
+200
+00:10:29.580 --> 00:10:32.180
+The Factory Method Pattern
+is a little bit different.
+
+201
+00:10:32.180 --> 00:10:35.070
+Instead of using another
+object to create objects,
+
+202
+00:10:35.070 --> 00:10:39.530
+we separate out object creation into
+another method, a Factory Method.
+
+203
+00:10:39.530 --> 00:10:42.750
+Now, instead of working with
+the Factory Object, we specialize or
+
+204
+00:10:42.750 --> 00:10:45.640
+subclass the class that
+uses the Factory Method.
+
+205
+00:10:45.640 --> 00:10:48.720
+Each subclass must define
+it's own Factory Method.
+
+206
+00:10:48.720 --> 00:10:52.620
+We say that we are letting the subclasses
+decide how objects are made.
+
+207
+00:10:52.620 --> 00:10:56.680
+By separating the actual object creation
+from other behavior using factories,
+
+208
+00:10:56.680 --> 00:11:00.100
+the code becomes cleaner to read and
+easier to maintain or change.
+
+209
+00:11:00.100 --> 00:11:01.710
+The client code is simplified and
+
+210
+00:11:01.710 --> 00:11:04.910
+the details of object creation
+are moved into the factories.
+
+211
+00:11:04.910 --> 00:11:06.702
+The code becomes more extensible and
+
+212
+00:11:06.702 --> 00:11:10.749
+harnesses the power of object oriented
+design principles, such as inheritance,
+
+213
+00:11:10.749 --> 00:11:13.195
+to allow you to specialize
+your object creation.

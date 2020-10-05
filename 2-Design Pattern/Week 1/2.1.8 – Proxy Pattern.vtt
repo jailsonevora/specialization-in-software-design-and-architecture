@@ -1,0 +1,501 @@
+WEBVTT
+
+1
+00:00:13.990 --> 00:00:16.708
+There are times in life when it's easier,
+
+2
+00:00:16.708 --> 00:00:21.155
+safer or more convenient to use a placeholder to represent something or someone else.
+
+3
+00:00:21.155 --> 00:00:25.545
+Individual representatives may be sent to speak on behalf of the company at a conference.
+
+4
+00:00:25.545 --> 00:00:29.750
+Crash test dummies are used instead of real human beings for vehicle collision testing.
+
+5
+00:00:29.750 --> 00:00:33.210
+And a credit card is an acceptable form of payment in place of cash.
+
+6
+00:00:33.210 --> 00:00:34.808
+In each of these situations,
+
+7
+00:00:34.808 --> 00:00:37.445
+an object is represented by a proxy object.
+
+8
+00:00:37.445 --> 00:00:41.840
+The proxy acts as a simplified or lightweight version of the original object.
+
+9
+00:00:41.840 --> 00:00:44.780
+A proxy object is still able to accomplish the same tasks,
+
+10
+00:00:44.780 --> 00:00:48.505
+but may delegate requests to the original object to achieve them.
+
+11
+00:00:48.505 --> 00:00:50.990
+We encounter similar issues in software systems where it is
+
+12
+00:00:50.990 --> 00:00:53.950
+better to use a proxy object in place of the original.
+
+13
+00:00:53.950 --> 00:00:56.180
+This is the goal of the proxy design pattern,
+
+14
+00:00:56.180 --> 00:00:59.750
+which allows a proxy class to represent a real subject class.
+
+15
+00:00:59.750 --> 00:01:01.214
+In this design pattern,
+
+16
+00:01:01.214 --> 00:01:03.997
+the proxy class wraps the real subject class, that is,
+
+17
+00:01:03.997 --> 00:01:07.245
+hides a reference to an instance of the real subject class.
+
+18
+00:01:07.245 --> 00:01:10.385
+The real subject class is a part of your system that, for example,
+
+19
+00:01:10.385 --> 00:01:14.495
+may contain sensitive information or would be resource intensive to instantiate.
+
+20
+00:01:14.495 --> 00:01:16.685
+Since the proxy class acts as a wrapper,
+
+21
+00:01:16.685 --> 00:01:20.980
+client classes will interact with it instead of the real subject class.
+
+22
+00:01:20.980 --> 00:01:23.470
+Why do we want to use a proxy class?
+
+23
+00:01:23.470 --> 00:01:26.315
+The three most common scenarios for them are: One,
+
+24
+00:01:26.315 --> 00:01:30.590
+to act as a virtual proxy where the proxy class is used in place of a real subject class,
+
+25
+00:01:30.590 --> 00:01:32.990
+that is resource intensive to instantiate.
+
+26
+00:01:32.990 --> 00:01:35.240
+This is commonly used on images, and web pages,
+
+27
+00:01:35.240 --> 00:01:39.635
+or graphics editors, because a single high definition image can be extremely large.
+
+28
+00:01:39.635 --> 00:01:41.760
+If you were to load all of these images at once,
+
+29
+00:01:41.760 --> 00:01:43.985
+it could put a strain on your system's resources.
+
+30
+00:01:43.985 --> 00:01:49.025
+Two, to act as a protection proxy in order to control access to the real subject class.
+
+31
+00:01:49.025 --> 00:01:50.960
+A protection proxy can be used in
+
+32
+00:01:50.960 --> 00:01:54.075
+a learning management system that checks the credentials of a user.
+
+33
+00:01:54.075 --> 00:01:56.360
+So the different users, like students and instructors,
+
+34
+00:01:56.360 --> 00:01:59.780
+can only access the appropriate functions permitted by their role.
+
+35
+00:01:59.780 --> 00:02:02.315
+And three, to act as a remote proxy,
+
+36
+00:02:02.315 --> 00:02:06.310
+where the proxy class is local and the real subject class exists remotely.
+
+37
+00:02:06.310 --> 00:02:08.735
+Think of this like working on a Google document
+
+38
+00:02:08.735 --> 00:02:11.669
+where your web browser has all the objects it needs locally,
+
+39
+00:02:11.669 --> 00:02:15.920
+which also exists on a Google server somewhere else.
+
+40
+00:02:15.920 --> 00:02:19.900
+Let's take a look at the general classes and structure of the proxy design pattern.
+
+41
+00:02:19.900 --> 00:02:23.240
+The proxy class wraps and may delegate or redirect calls upon it,
+
+42
+00:02:23.240 --> 00:02:24.870
+to the real object class.
+
+43
+00:02:24.870 --> 00:02:28.820
+However, not all calls get delegated because the proxy class is supposed to act as
+
+44
+00:02:28.820 --> 00:02:30.920
+a lighter version of the real subject class
+
+45
+00:02:30.920 --> 00:02:33.365
+and can do some of its later responsibilities.
+
+46
+00:02:33.365 --> 00:02:37.840
+The proxy class will only redirect more substantive requests to the real subject class.
+
+47
+00:02:37.840 --> 00:02:40.760
+But, what calls need to be supported in the proxy class?
+
+48
+00:02:40.760 --> 00:02:44.420
+Since the proxy class is meant to stand in for the real subject class,
+
+49
+00:02:44.420 --> 00:02:46.120
+it must offer the same methods.
+
+50
+00:02:46.120 --> 00:02:50.107
+You can ensure that by having both these classes implement a common subject interface,
+
+51
+00:02:50.107 --> 00:02:52.340
+which also allows for polymorphism.
+
+52
+00:02:52.340 --> 00:02:56.245
+Since the proxy and real subject classes are both sub-types of subject,
+
+53
+00:02:56.245 --> 00:02:58.670
+a client class can interact with the proxy,
+
+54
+00:02:58.670 --> 00:03:05.740
+which will have the same expected interface as the real subject.
+
+55
+00:03:05.740 --> 00:03:08.932
+Let's take a look at a practical application of the proxy pattern.
+
+56
+00:03:08.932 --> 00:03:13.269
+Suppose you run an online retail store with global distribution and warehousing,
+
+57
+00:03:13.269 --> 00:03:17.215
+how would you know which warehouse to route orders to to fulfill customer orders?
+
+58
+00:03:17.215 --> 00:03:19.470
+You may run into an issue where you route orders to
+
+59
+00:03:19.470 --> 00:03:22.820
+a warehouse that doesn't have stock for an item in a customer order.
+
+60
+00:03:22.820 --> 00:03:26.140
+You need some way to determine which warehouse to send the orders to.
+
+61
+00:03:26.140 --> 00:03:28.560
+A system that routes the order's full fulfillment to
+
+62
+00:03:28.560 --> 00:03:30.150
+an appropriate warehouse will prevent
+
+63
+00:03:30.150 --> 00:03:33.180
+your warehouses from receiving orders they cannot fill.
+
+64
+00:03:33.180 --> 00:03:35.730
+So, how would you implement this system?
+
+65
+00:03:35.730 --> 00:03:39.240
+You can use the proxy design pattern to have a proxy protect your real subject,
+
+66
+00:03:39.240 --> 00:03:41.370
+the warehouses, from receiving orders if
+
+67
+00:03:41.370 --> 00:03:44.160
+the warehouses don't have enough stock to fulfill an order.
+
+68
+00:03:44.160 --> 00:03:47.790
+The IOrder interface defines how you would fulfill the orders.
+
+69
+00:03:47.790 --> 00:03:51.755
+The proxy class and the real subject class will implement the interface differently.
+
+70
+00:03:51.755 --> 00:03:55.530
+This interface declares how to interact with your order fulfillment system.
+
+71
+00:03:55.530 --> 00:03:59.920
+The order fulfillment class acts as the proxy for all your warehouses.
+
+72
+00:03:59.920 --> 00:04:03.465
+It has a list of warehouses that it can delegate parts of customer orders to
+
+73
+00:04:03.465 --> 00:04:07.620
+depending on whether or not a warehouse is capable of fulfilling a part of the order.
+
+74
+00:04:07.620 --> 00:04:10.980
+The warehouse class is your real subject class and will be
+
+75
+00:04:10.980 --> 00:04:15.010
+responsible for actually processing and fulfilling parts of customer orders.
+
+76
+00:04:15.010 --> 00:04:18.960
+The warehouse class will report its inventory to the proxy that asks for it.
+
+77
+00:04:18.960 --> 00:04:22.746
+As shown in the general design overview for the proxy design pattern,
+
+78
+00:04:22.746 --> 00:04:26.213
+the client will interact with your system by using the interface.
+
+79
+00:04:26.213 --> 00:04:29.310
+Now that you've completed the design for your order fulfillment system,
+
+80
+00:04:29.310 --> 00:04:31.603
+the next step is to implement it.
+
+81
+00:04:31.603 --> 00:04:34.815
+Step one, design the subject interface.
+
+82
+00:04:34.815 --> 00:04:38.885
+Create the interface that client software will use to interact with your system.
+
+83
+00:04:38.885 --> 00:04:43.380
+This interface will be implemented by the order fulfillment and warehouse classes.
+
+84
+00:04:43.380 --> 00:04:46.635
+Step two, implement the real subject class.
+
+85
+00:04:46.635 --> 00:04:50.378
+The warehouse class knows how to process an order for fulfillment,
+
+86
+00:04:50.378 --> 00:04:53.250
+and it knows how to report the current stock of items.
+
+87
+00:04:53.250 --> 00:04:56.670
+Notice that it doesn't need to check if it has enough stock to fulfill an order,
+
+88
+00:04:56.670 --> 00:05:00.400
+because an order should only be sent to a warehouse if it can be fulfilled.
+
+89
+00:05:00.400 --> 00:05:03.165
+Step three, implement the proxy class.
+
+90
+00:05:03.165 --> 00:05:07.110
+The order fulfillment class does all the work of checking the warehouse inventory and
+
+91
+00:05:07.110 --> 00:05:08.910
+ensuring that an order can be successfully
+
+92
+00:05:08.910 --> 00:05:12.040
+completed before sending the request to the warehouse.
+
+93
+00:05:12.040 --> 00:05:16.046
+It will ask each warehouse about whether it has enough stock of a particular item.
+
+94
+00:05:16.046 --> 00:05:18.075
+If the warehouse has enough inventory,
+
+95
+00:05:18.075 --> 00:05:22.055
+the item gets added to a new order object that will be sent to the warehouse.
+
+96
+00:05:22.055 --> 00:05:24.360
+The proxy class ensures that an order can be
+
+97
+00:05:24.360 --> 00:05:27.390
+fulfilled before sending the request to your warehouses.
+
+98
+00:05:27.390 --> 00:05:31.080
+This protects your warehouse system from receiving orders it cannot fulfill.
+
+99
+00:05:31.080 --> 00:05:34.620
+The order fulfillment class also lets you separate order validation
+
+100
+00:05:34.620 --> 00:05:38.250
+from the order fulfillment by separating them into two pieces.
+
+101
+00:05:38.250 --> 00:05:40.725
+This will improve the overall rate of processing an order
+
+102
+00:05:40.725 --> 00:05:44.460
+because the warehouse doesn't have to worry about the validation process.
+
+103
+00:05:44.460 --> 00:05:47.070
+Each individual warehouse also doesn't need to worry about
+
+104
+00:05:47.070 --> 00:05:50.275
+how to reroute an order if the warehouse can't fulfill the order.
+
+105
+00:05:50.275 --> 00:05:54.540
+The order fulfillment class can be improved with other functionalities, such as,
+
+106
+00:05:54.540 --> 00:05:59.010
+prioritizing sending orders to warehouses based on proximity to the customer to
+
+107
+00:05:59.010 --> 00:06:04.185
+ensure that orders arrive as fast as possible.
+
+108
+00:06:04.185 --> 00:06:07.180
+The proxy design pattern is useful when you
+
+109
+00:06:07.180 --> 00:06:10.375
+need to defer creating resource intensive objects until needed,
+
+110
+00:06:10.375 --> 00:06:12.505
+control access to specific objects,
+
+111
+00:06:12.505 --> 00:06:16.890
+or when you need something to act as a local representation of a remote system.
+
+112
+00:06:16.890 --> 00:06:19.870
+To summarize, the main features of the proxy design pattern
+
+113
+00:06:19.870 --> 00:06:23.665
+are: to use the proxy class to wrap the real subject class,
+
+114
+00:06:23.665 --> 00:06:26.470
+to have a polymorphic design so that the client class can
+
+115
+00:06:26.470 --> 00:06:29.980
+expect the same interface for the proxy and real subject classes,
+
+116
+00:06:29.980 --> 00:06:32.110
+to use a lightweight proxy in place of
+
+117
+00:06:32.110 --> 00:06:35.384
+a resource intensive object until it is actually needed,
+
+118
+00:06:35.384 --> 00:06:38.050
+to implement some form of intelligent verification of
+
+119
+00:06:38.050 --> 00:06:41.448
+requests from client code in order to determine if, how,
+
+120
+00:06:41.448 --> 00:06:43.680
+and to whom the requests should be forwarded to,
+
+121
+00:06:43.680 --> 00:06:46.330
+and to present a local representation of
+
+122
+00:06:46.330 --> 00:06:50.035
+a system that is not in the same physical or virtual space.
+
+123
+00:06:50.035 --> 00:06:54.040
+The proxy design pattern provides your system with a powerful means of indirection.
+
+124
+00:06:54.040 --> 00:06:56.680
+Proxy classes are robust and can let you build
+
+125
+00:06:56.680 --> 00:07:00.630
+systems that are more secure and less resource-intensive.

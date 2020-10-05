@@ -1,0 +1,505 @@
+WEBVTT
+
+1
+00:00:14.550 --> 00:00:18.965
+There are many design patterns you can find in books and via the Internet.
+
+2
+00:00:18.965 --> 00:00:20.890
+One of the most famous books on the topic is
+
+3
+00:00:20.890 --> 00:00:24.355
+Design Patterns: Elements of Reusable Object-Oriented Software.
+
+4
+00:00:24.355 --> 00:00:28.030
+This book was written by four authors who were given the nickname, The Gang of Four.
+
+5
+00:00:28.030 --> 00:00:31.420
+The Gang of Four's book pulled from their experience as developers.
+
+6
+00:00:31.420 --> 00:00:34.360
+Each author had written their own programs and graphical applications,
+
+7
+00:00:34.360 --> 00:00:35.500
+and while doing so found,
+
+8
+00:00:35.500 --> 00:00:37.650
+patterns emerging in their design solutions.
+
+9
+00:00:37.650 --> 00:00:42.250
+As a group, they decided to formalize the patterns into a useful reference.
+
+10
+00:00:42.250 --> 00:00:44.095
+The patterns are organized to be readable,
+
+11
+00:00:44.095 --> 00:00:46.615
+and they are often named to suggest their purpose.
+
+12
+00:00:46.615 --> 00:00:49.510
+With these patterns, they formed a catalog.
+
+13
+00:00:49.510 --> 00:00:53.805
+In this lesson, I will go over The Gang of Four's design pattern catalog.
+
+14
+00:00:53.805 --> 00:00:56.020
+This catalog is not like a recipe book.
+
+15
+00:00:56.020 --> 00:00:59.910
+You can't pull universal patterns out of it to using your code like puzzle pieces.
+
+16
+00:00:59.910 --> 00:01:02.495
+Instead, It's closer to a list of tropes.
+
+17
+00:01:02.495 --> 00:01:06.250
+A trope is a storytelling device or convention often found in fiction.
+
+18
+00:01:06.250 --> 00:01:09.250
+Films and TV shows use a pattern of storytelling.
+
+19
+00:01:09.250 --> 00:01:12.625
+For example, you might see the Hero's Journey recur in fiction.
+
+20
+00:01:12.625 --> 00:01:16.790
+The Hero's Journey is a pattern of storytelling that follows a very distinct order.
+
+21
+00:01:16.790 --> 00:01:19.975
+The hero starts from humble beginnings in ordinary world,
+
+22
+00:01:19.975 --> 00:01:23.800
+finds a special world, and must face trials in order to return home.
+
+23
+00:01:23.800 --> 00:01:26.470
+This trope can be found in hundreds of pieces of fiction.
+
+24
+00:01:26.470 --> 00:01:28.465
+Just like tropes recurring in film,
+
+25
+00:01:28.465 --> 00:01:30.340
+design patterns emerge in software.
+
+26
+00:01:30.340 --> 00:01:33.965
+Occurrences of the same pattern can be found in thousands of programs.
+
+27
+00:01:33.965 --> 00:01:37.705
+A very simple example of a pattern would be Defining and Calling methods.
+
+28
+00:01:37.705 --> 00:01:40.150
+The Gang of Four's catalog contains a number of
+
+29
+00:01:40.150 --> 00:01:43.355
+patterns and solutions with a variety of different purposes.
+
+30
+00:01:43.355 --> 00:01:45.070
+A collection of patterns that are related to
+
+31
+00:01:45.070 --> 00:01:47.695
+a certain problem space is called a Pattern Language.
+
+32
+00:01:47.695 --> 00:01:49.670
+Depending on the context of the problem,
+
+33
+00:01:49.670 --> 00:01:51.805
+you would need to use different pattern languages.
+
+34
+00:01:51.805 --> 00:01:53.860
+When designing games, you might use
+
+35
+00:01:53.860 --> 00:01:56.890
+a different pattern language than if you were creating accounting software.
+
+36
+00:01:56.890 --> 00:02:00.840
+For games, you have designed words such as encounters, quests, and players.
+
+37
+00:02:00.840 --> 00:02:03.415
+These words are important in design patterns for game software,
+
+38
+00:02:03.415 --> 00:02:06.475
+but would not be found in design patterns for accounting software.
+
+39
+00:02:06.475 --> 00:02:07.703
+In accounting software,
+
+40
+00:02:07.703 --> 00:02:10.975
+double entry bookkeeping is a vital design solution to reduce errors,
+
+41
+00:02:10.975 --> 00:02:13.455
+and ensure consistency in the transactions.
+
+42
+00:02:13.455 --> 00:02:15.400
+Double entry bookkeeping would not need to be
+
+43
+00:02:15.400 --> 00:02:18.130
+defined in the pattern language for game design.
+
+44
+00:02:18.130 --> 00:02:19.840
+Think of it like human languages.
+
+45
+00:02:19.840 --> 00:02:22.360
+If you were trying to speak with someone who only spoke Mandarin,
+
+46
+00:02:22.360 --> 00:02:25.015
+you would choose the appropriate language to converse with them.
+
+47
+00:02:25.015 --> 00:02:28.420
+Just like you would choose the language of speaking based on your audience,
+
+48
+00:02:28.420 --> 00:02:29.950
+you would also choose your pattern language,
+
+49
+00:02:29.950 --> 00:02:32.430
+and design patterns based on the problem space.
+
+50
+00:02:32.430 --> 00:02:36.345
+Now, it's your turn to design a pattern language.
+
+51
+00:02:36.345 --> 00:02:41.061
+There are 23 patterns found in the Gang of Four's catalog.
+
+52
+00:02:41.061 --> 00:02:44.340
+I will go over the categories of patterns that the Gang of Four defined.
+
+53
+00:02:44.340 --> 00:02:47.970
+One of the main categories of patterns involves Creational Patterns.
+
+54
+00:02:47.970 --> 00:02:51.810
+Creational Patterns tackle how you handle creating new objects.
+
+55
+00:02:51.810 --> 00:02:55.500
+There are several different patterns based upon creating and cloning objects.
+
+56
+00:02:55.500 --> 00:02:59.025
+For example, if you are creating an object that is similar to an existing one,
+
+57
+00:02:59.025 --> 00:03:00.900
+instead of instantiating a new object,
+
+58
+00:03:00.900 --> 00:03:02.740
+you might clone existing objects.
+
+59
+00:03:02.740 --> 00:03:04.050
+You might make the choice to clone,
+
+60
+00:03:04.050 --> 00:03:07.365
+rather than instantiate based upon the language you are implementing in.
+
+61
+00:03:07.365 --> 00:03:09.480
+Languages without the notion of classes would
+
+62
+00:03:09.480 --> 00:03:12.180
+encourage you to clone and add to existing objects.
+
+63
+00:03:12.180 --> 00:03:16.560
+Language like Javascript does not contain traditional classes to be instantiated.
+
+64
+00:03:16.560 --> 00:03:19.080
+Objects are instead cloned and expanded to meet
+
+65
+00:03:19.080 --> 00:03:22.500
+the purposes of those particular instances, called prototypes.
+
+66
+00:03:22.500 --> 00:03:26.110
+Javascript allows for changes to these prototypes at run time.
+
+67
+00:03:26.110 --> 00:03:28.860
+Languages like Java and C-Sharp on the other hand,
+
+68
+00:03:28.860 --> 00:03:33.870
+rely heavily on instantiating objects using specific classes defined at compile time.
+
+69
+00:03:33.870 --> 00:03:37.752
+The different ways of creating objects can strongly impact how you solve a problem.
+
+70
+00:03:37.752 --> 00:03:41.220
+An Implementation Language, is how we design pattern language is realized,
+
+71
+00:03:41.220 --> 00:03:45.060
+which can heavily influence what patterns are possible to use.
+
+72
+00:03:45.060 --> 00:03:49.815
+Another pattern category used by the Gang of Four involved Structural Patterns.
+
+73
+00:03:49.815 --> 00:03:53.355
+Structural patterns, describe how objects are connected to each other.
+
+74
+00:03:53.355 --> 00:03:55.620
+Previously, we examined the major design principles
+
+75
+00:03:55.620 --> 00:03:57.750
+like Decomposition and Generalization,
+
+76
+00:03:57.750 --> 00:04:01.215
+and how they are expressed in UML class diagrams with Association,
+
+77
+00:04:01.215 --> 00:04:05.430
+Aggregation, Composition, Inheritance, and Interface relationships.
+
+78
+00:04:05.430 --> 00:04:07.350
+There are many different ways you can structure objects
+
+79
+00:04:07.350 --> 00:04:09.985
+depending on the relationship you'd like between them.
+
+80
+00:04:09.985 --> 00:04:13.710
+Not only do structural patterns describe how different objects have relationships,
+
+81
+00:04:13.710 --> 00:04:17.475
+but also how subclasses and classes interact through inheritance.
+
+82
+00:04:17.475 --> 00:04:19.605
+Structural Patterns use these relationships,
+
+83
+00:04:19.605 --> 00:04:23.280
+and describe how they should work to achieve a particular design goal.
+
+84
+00:04:23.280 --> 00:04:27.315
+Think of a structural pattern like a food dish with a combination of flavor pairings.
+
+85
+00:04:27.315 --> 00:04:29.700
+A flavor pairing determines which ingredients may be
+
+86
+00:04:29.700 --> 00:04:32.520
+combined together to form a suitable relationship.
+
+87
+00:04:32.520 --> 00:04:33.900
+Some ingredients are mixed together,
+
+88
+00:04:33.900 --> 00:04:36.210
+to the point where they are nearly indistinguishable,
+
+89
+00:04:36.210 --> 00:04:38.535
+such as garlic and chickpeas and hummus.
+
+90
+00:04:38.535 --> 00:04:41.370
+Others are combined but still maintain some independence,
+
+91
+00:04:41.370 --> 00:04:43.770
+such as a salad of mixed vegetables.
+
+92
+00:04:43.770 --> 00:04:46.830
+Some food just pairs well with others and is not physically combined,
+
+93
+00:04:46.830 --> 00:04:48.530
+such as wine and cheese.
+
+94
+00:04:48.530 --> 00:04:51.930
+The relationships among the food are defined by the pairings.
+
+95
+00:04:51.930 --> 00:04:54.630
+Similarly, in software, each structural pattern
+
+96
+00:04:54.630 --> 00:04:58.805
+determines this various suitable relationships among the objects.
+
+97
+00:04:58.805 --> 00:05:01.855
+The final pattern category involves Behavioral Patterns.
+
+98
+00:05:01.855 --> 00:05:04.795
+These patterns focus on how objects distribute work.
+
+99
+00:05:04.795 --> 00:05:08.070
+They describe how each object does a single cohesive function.
+
+100
+00:05:08.070 --> 00:05:12.720
+Behavioral patterns also focus on how independent objects work towards a common goal.
+
+101
+00:05:12.720 --> 00:05:15.720
+Think of a behavioral pattern like a race car pit crew at a track.
+
+102
+00:05:15.720 --> 00:05:17.670
+In the pit crew, the roles of the members
+
+103
+00:05:17.670 --> 00:05:19.845
+describe how the team is able to achieve victory,
+
+104
+00:05:19.845 --> 00:05:21.355
+which is their common goal.
+
+105
+00:05:21.355 --> 00:05:24.625
+Each member has a specific responsibility, their role in the race.
+
+106
+00:05:24.625 --> 00:05:26.940
+Some members change the tires, others unmount,
+
+107
+00:05:26.940 --> 00:05:28.105
+and mount the wheel nuts,
+
+108
+00:05:28.105 --> 00:05:29.325
+others refuel the car,
+
+109
+00:05:29.325 --> 00:05:31.260
+but all must work together to win.
+
+110
+00:05:31.260 --> 00:05:33.660
+Like a game plan, a Behavioral Pattern lays out
+
+111
+00:05:33.660 --> 00:05:37.190
+the overall goal and the purpose for each of the objects.
+
+112
+00:05:37.190 --> 00:05:40.015
+All of these categories may not be so clear cut.
+
+113
+00:05:40.015 --> 00:05:43.350
+Some patterns have elements that could make them span categories.
+
+114
+00:05:43.350 --> 00:05:45.600
+The Gang of Four just uses these categories in order
+
+115
+00:05:45.600 --> 00:05:48.330
+to organize and characterize the patterns in their book.
+
+116
+00:05:48.330 --> 00:05:50.610
+Patterns will help you as a designer to develop
+
+117
+00:05:50.610 --> 00:05:53.685
+an intuition for and appreciate object-oriented design.
+
+118
+00:05:53.685 --> 00:05:55.765
+By looking for specific design patterns,
+
+119
+00:05:55.765 --> 00:05:58.675
+you can better recognize object-oriented design elsewhere.
+
+120
+00:05:58.675 --> 00:06:01.765
+Patterns sometimes come with their share of consequences.
+
+121
+00:06:01.765 --> 00:06:05.460
+You must decide which ones will suit your problem or design issue the best.
+
+122
+00:06:05.460 --> 00:06:08.305
+There are trade offs that must be made when designing your systems.
+
+123
+00:06:08.305 --> 00:06:10.575
+Some patterns may be more resource-intensive,
+
+124
+00:06:10.575 --> 00:06:12.600
+like more memory, or processing.
+
+125
+00:06:12.600 --> 00:06:14.275
+By learning different design patterns,
+
+126
+00:06:14.275 --> 00:06:18.670
+you will be able to design software for different purposes and in different ways.

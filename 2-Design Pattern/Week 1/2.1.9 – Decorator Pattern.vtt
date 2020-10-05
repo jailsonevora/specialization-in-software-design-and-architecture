@@ -1,0 +1,865 @@
+WEBVTT
+
+1
+00:00:14.230 --> 00:00:17.645
+Coffee is one of my favorite things in the world.
+
+2
+00:00:17.645 --> 00:00:19.475
+I like a simple cup of black coffee,
+
+3
+00:00:19.475 --> 00:00:21.370
+but sometimes I like to switch it up.
+
+4
+00:00:21.370 --> 00:00:23.830
+Are you someone who likes a plain cup of black coffee?
+
+5
+00:00:23.830 --> 00:00:27.375
+Or are you one of those people that likes the more dressed up versions of coffee?
+
+6
+00:00:27.375 --> 00:00:29.870
+Adding more ingredients like milk, flavored cream,
+
+7
+00:00:29.870 --> 00:00:32.860
+or hot chocolate are ways of changing a cup of coffee.
+
+8
+00:00:32.860 --> 00:00:34.040
+We may still think of it as being
+
+9
+00:00:34.040 --> 00:00:36.950
+a coffee based beverage but there are expected differences
+
+10
+00:00:36.950 --> 00:00:41.955
+between black coffee and more fancy versions of coffee like a latte or espresso.
+
+11
+00:00:41.955 --> 00:00:44.120
+Regardless of what type of coffee we're drinking,
+
+12
+00:00:44.120 --> 00:00:46.790
+the effects of each ingredient used don't change.
+
+13
+00:00:46.790 --> 00:00:51.345
+For example, coffee will always act like a stimulant because of its caffeine content.
+
+14
+00:00:51.345 --> 00:00:52.795
+This doesn't change if we add milk,
+
+15
+00:00:52.795 --> 00:00:53.915
+change the brewing style,
+
+16
+00:00:53.915 --> 00:00:55.710
+or if it's served at different temperatures.
+
+17
+00:00:55.710 --> 00:00:57.855
+Coffee will still be a stimulant.
+
+18
+00:00:57.855 --> 00:01:00.260
+This holds true for anything that you add to coffee.
+
+19
+00:01:00.260 --> 00:01:02.690
+Someone who's lactose intolerant would still be unable to
+
+20
+00:01:02.690 --> 00:01:05.980
+consume dairy products even if they were mixed in with coffee.
+
+21
+00:01:05.980 --> 00:01:09.540
+The lactose in milk doesn't change because it's mixed with something else.
+
+22
+00:01:09.540 --> 00:01:13.080
+Even though every ingredient continues to hold its own characteristics,
+
+23
+00:01:13.080 --> 00:01:15.050
+combining them creates a new beverage that may be
+
+24
+00:01:15.050 --> 00:01:18.810
+more enjoyable than when consumed separately.
+
+25
+00:01:18.810 --> 00:01:21.290
+In software, like devising a new beverage,
+
+26
+00:01:21.290 --> 00:01:24.935
+it's beneficial to have flexible combinations of overall behaviors.
+
+27
+00:01:24.935 --> 00:01:28.670
+But we encounter an issue trying to do this dynamically at runtime,
+
+28
+00:01:28.670 --> 00:01:31.835
+that's because the behavior of an object is defined by its class,
+
+29
+00:01:31.835 --> 00:01:35.180
+but the notion of a class and relationships like inheritance are static.
+
+30
+00:01:35.180 --> 00:01:37.880
+That is, happen at compile time.
+
+31
+00:01:37.880 --> 00:01:41.690
+This means that we cannot make changes to classes while our program is running.
+
+32
+00:01:41.690 --> 00:01:45.485
+We'd need to create a new class in order to achieve a new combination of behaviors.
+
+33
+00:01:45.485 --> 00:01:48.080
+As a result, having lots of new combinations
+
+34
+00:01:48.080 --> 00:01:50.765
+would lead to lots of classes and we don't want that.
+
+35
+00:01:50.765 --> 00:01:53.015
+Given that an object has a certain behavior,
+
+36
+00:01:53.015 --> 00:01:57.925
+can we still in effect dynamically attach additional behaviors or responsibilities to it?
+
+37
+00:01:57.925 --> 00:02:01.095
+Luckily, there is a decorator design pattern to achieve this,
+
+38
+00:02:01.095 --> 00:02:05.350
+and uses aggregation to combine behaviors at runtime.
+
+39
+00:02:05.350 --> 00:02:07.640
+Aggregation is used to represent a "has
+
+40
+00:02:07.640 --> 00:02:11.190
+a" or "weak containment" relationship between two objects.
+
+41
+00:02:11.190 --> 00:02:15.500
+We can use that "has a" relationship to build a stack of objects where each level of
+
+42
+00:02:15.500 --> 00:02:17.300
+the stack contains an object that knows about
+
+43
+00:02:17.300 --> 00:02:20.900
+its own behavior and augments the one underneath it in the stack.
+
+44
+00:02:20.900 --> 00:02:23.750
+This is what an aggregation stack looks like.
+
+45
+00:02:23.750 --> 00:02:28.400
+Object A is a base object because it doesn't contain another object.
+
+46
+00:02:28.400 --> 00:02:30.275
+It will have its own set of behaviors.
+
+47
+00:02:30.275 --> 00:02:34.190
+Object B aggregates object A allowing object B to,
+
+48
+00:02:34.190 --> 00:02:37.440
+in effect, augment the behaviors of object A.
+
+49
+00:02:37.440 --> 00:02:39.860
+We can continue to add objects to the stack in
+
+50
+00:02:39.860 --> 00:02:42.770
+such a way that objects C aggregates object B to,
+
+51
+00:02:42.770 --> 00:02:45.825
+in effect, augment the behaviors of object B.
+
+52
+00:02:45.825 --> 00:02:48.435
+The aggregation relationship is always one-to-one in
+
+53
+00:02:48.435 --> 00:02:50.750
+the decorator design pattern in order to build
+
+54
+00:02:50.750 --> 00:02:53.675
+up the stack so that one object is on top of another.
+
+55
+00:02:53.675 --> 00:02:57.260
+To achieve an overall combination of behavior for the stacked objects,
+
+56
+00:02:57.260 --> 00:03:02.840
+you would call upon the top element which is object C. Object C would call upon object B.
+
+57
+00:03:02.840 --> 00:03:05.125
+And object B would call upon object A.
+
+58
+00:03:05.125 --> 00:03:07.055
+Object A responds with its behavior,
+
+59
+00:03:07.055 --> 00:03:09.245
+then object B adds its incremented behavior,
+
+60
+00:03:09.245 --> 00:03:12.100
+and then object C adds its incremented behavior.
+
+61
+00:03:12.100 --> 00:03:15.110
+The actual structure of this design pattern makes use of both interfaces
+
+62
+00:03:15.110 --> 00:03:18.545
+and inheritance so that the classes conform to a common type,
+
+63
+00:03:18.545 --> 00:03:21.255
+whose instances can be stacked up in a compatible way
+
+64
+00:03:21.255 --> 00:03:26.240
+to build up a coherent combination of behavior overall.
+
+65
+00:03:26.240 --> 00:03:28.370
+Now, let's look at how the decorator design pattern is
+
+66
+00:03:28.370 --> 00:03:31.175
+structured with a general UML class diagram.
+
+67
+00:03:31.175 --> 00:03:35.105
+The component interface is used to define the common type for all the classes.
+
+68
+00:03:35.105 --> 00:03:39.560
+A client class will expect the same interface across all the component classes.
+
+69
+00:03:39.560 --> 00:03:44.375
+A concrete component class implements the component interface and can be instantiated.
+
+70
+00:03:44.375 --> 00:03:48.266
+An instance of this class can be used as a base object in the stack.
+
+71
+00:03:48.266 --> 00:03:51.140
+Decorator is an abstract class.
+
+72
+00:03:51.140 --> 00:03:52.970
+Just like the concrete component class,
+
+73
+00:03:52.970 --> 00:03:55.185
+it implements the component interface.
+
+74
+00:03:55.185 --> 00:03:58.580
+The main differences are that decorator aggregates other types of
+
+75
+00:03:58.580 --> 00:04:02.120
+components which will allow us to stack components on top of each other,
+
+76
+00:04:02.120 --> 00:04:05.210
+and decorator serves as the abstract superclass of
+
+77
+00:04:05.210 --> 00:04:09.195
+concrete decorator classes that will provide an increment of behavior.
+
+78
+00:04:09.195 --> 00:04:11.930
+We build the stack of components starting with an instance of
+
+79
+00:04:11.930 --> 00:04:14.480
+the concrete component class and continuing with
+
+80
+00:04:14.480 --> 00:04:17.780
+instances of subclasses of the decorator abstract class.
+
+81
+00:04:17.780 --> 00:04:19.580
+In terms of our coffee analogy,
+
+82
+00:04:19.580 --> 00:04:22.340
+the concrete component would be a black coffee.
+
+83
+00:04:22.340 --> 00:04:25.010
+Decorators for our coffee would be milk, sugar,
+
+84
+00:04:25.010 --> 00:04:29.645
+hot chocolate, and any other ingredient you could add to a coffee.
+
+85
+00:04:29.645 --> 00:04:33.230
+There are many analogies that can be used for
+
+86
+00:04:33.230 --> 00:04:36.030
+the decorator design pattern from coffee to pizza.
+
+87
+00:04:36.030 --> 00:04:38.450
+But, these analogies don't translate well to how you
+
+88
+00:04:38.450 --> 00:04:41.340
+would actually make use of this design pattern for software.
+
+89
+00:04:41.340 --> 00:04:43.430
+So, let's look at an example that is more
+
+90
+00:04:43.430 --> 00:04:45.980
+realistic to what you would see in a software system.
+
+91
+00:04:45.980 --> 00:04:49.895
+A web page is an example of where we would use this design pattern.
+
+92
+00:04:49.895 --> 00:04:52.280
+A basic web page is simply a markup using
+
+93
+00:04:52.280 --> 00:04:55.745
+HTML with stylesheets and possibly some Javascript.
+
+94
+00:04:55.745 --> 00:04:59.065
+However, the behavior of a web page can be more complex.
+
+95
+00:04:59.065 --> 00:05:02.365
+What if you want to make sure that people accessing your page are authorized?
+
+96
+00:05:02.365 --> 00:05:06.330
+Or what if you want to split a large number of search results into separate pages?
+
+97
+00:05:06.330 --> 00:05:08.660
+You don't want to write completely different web page types for
+
+98
+00:05:08.660 --> 00:05:11.135
+every possible combination of web page permission,
+
+99
+00:05:11.135 --> 00:05:13.520
+pagination, or caching behaviors.
+
+100
+00:05:13.520 --> 00:05:14.570
+Instead, you can use
+
+101
+00:05:14.570 --> 00:05:18.200
+a decorator design pattern to create one class for each type of behavior,
+
+102
+00:05:18.200 --> 00:05:22.125
+and build the specific combination of web page that you want at runtime.
+
+103
+00:05:22.125 --> 00:05:24.590
+Let's take this example and see what it would look like in
+
+104
+00:05:24.590 --> 00:05:29.720
+a UML class diagram by following the general design for a decorator design pattern.
+
+105
+00:05:29.720 --> 00:05:33.260
+Your component interface is a web page.
+
+106
+00:05:33.260 --> 00:05:35.960
+This will define all subclasses in the pattern as a type of
+
+107
+00:05:35.960 --> 00:05:40.140
+web page which have their own implementation of how to display themselves.
+
+108
+00:05:40.140 --> 00:05:43.260
+The concrete component class is your basic web page.
+
+109
+00:05:43.260 --> 00:05:45.335
+It consists of HTML, a stylesheet,
+
+110
+00:05:45.335 --> 00:05:48.995
+and scripts, which we will represent as strings for the sake of simplicity.
+
+111
+00:05:48.995 --> 00:05:53.255
+This basic web page should know how to display all of its web page elements.
+
+112
+00:05:53.255 --> 00:05:55.760
+Now, you need decorators to add more functionality to
+
+113
+00:05:55.760 --> 00:06:00.595
+your basic web page using aggregation instead of subclassing the basic web page itself.
+
+114
+00:06:00.595 --> 00:06:02.030
+You will need to use subtypes of
+
+115
+00:06:02.030 --> 00:06:05.835
+the abstract web page decorator class to augment our basic web page.
+
+116
+00:06:05.835 --> 00:06:07.190
+As we explored earlier,
+
+117
+00:06:07.190 --> 00:06:10.280
+the web page decorator will be a subtype of web page.
+
+118
+00:06:10.280 --> 00:06:14.880
+Therefore, a subtype of the decorator is also a subtype of the web page interface.
+
+119
+00:06:14.880 --> 00:06:16.160
+You can define any number of
+
+120
+00:06:16.160 --> 00:06:19.460
+additional behaviors you want to augment your basic web page with.
+
+121
+00:06:19.460 --> 00:06:22.280
+In this example, we will enhance the basic web page by
+
+122
+00:06:22.280 --> 00:06:25.400
+adding authorization to ensure the user can access the page,
+
+123
+00:06:25.400 --> 00:06:29.030
+and authentication to make sure the user is who they claim to be.
+
+124
+00:06:29.030 --> 00:06:32.745
+Can you see how this reduces the number of classes we would need to create?
+
+125
+00:06:32.745 --> 00:06:35.405
+If you used inheritance of the basic web page,
+
+126
+00:06:35.405 --> 00:06:39.105
+you would need to create a class for every combination of these behaviors.
+
+127
+00:06:39.105 --> 00:06:40.700
+That means we would need a separate class for
+
+128
+00:06:40.700 --> 00:06:44.060
+the combined authorization and authentication functions.
+
+129
+00:06:44.060 --> 00:06:46.910
+The decorator design pattern addresses this problem by allowing
+
+130
+00:06:46.910 --> 00:06:50.450
+concrete decorators to aggregate any type of component.
+
+131
+00:06:50.450 --> 00:06:54.331
+Now, let's take a look at how we would implement this design.
+
+132
+00:06:54.331 --> 00:06:57.650
+Step one, design the component interface.
+
+133
+00:06:57.650 --> 00:07:00.200
+First, you define your interface at the rest
+
+134
+00:07:00.200 --> 00:07:02.840
+of the classes in the design pattern would be subtypes of.
+
+135
+00:07:02.840 --> 00:07:04.250
+The interface will define
+
+136
+00:07:04.250 --> 00:07:07.990
+the common behaviors that your basic web page and decorators will have.
+
+137
+00:07:07.990 --> 00:07:12.530
+Step two, implement the interface with your base concrete component class.
+
+138
+00:07:12.530 --> 00:07:15.620
+Your basic web page will implement how it will display itself by using
+
+139
+00:07:15.620 --> 00:07:20.235
+standard HTML markup and page elements styling defined in the cascading style sheet.
+
+140
+00:07:20.235 --> 00:07:23.585
+Your basic web page will also run some basic Javascript.
+
+141
+00:07:23.585 --> 00:07:28.665
+This will be the base building block for all web page objects during runtime.
+
+142
+00:07:28.665 --> 00:07:32.765
+Step three, implement the interface with your abstract decorator class.
+
+143
+00:07:32.765 --> 00:07:37.205
+The implementation of the decorator class is important despite how little code there is.
+
+144
+00:07:37.205 --> 00:07:38.780
+The first thing to note is that
+
+145
+00:07:38.780 --> 00:07:42.435
+a web page decorator contains only one instance of web page.
+
+146
+00:07:42.435 --> 00:07:44.240
+This allows us to stack decorators on
+
+147
+00:07:44.240 --> 00:07:46.820
+top of the basic web page, and on top of each other.
+
+148
+00:07:46.820 --> 00:07:50.300
+Each type of web page is responsible for its own behavior and will
+
+149
+00:07:50.300 --> 00:07:54.300
+recursively invoke the next web page on the stack to execute its behavior.
+
+150
+00:07:54.300 --> 00:07:58.430
+The constructor will let you link different subtypes of web page together in a stack.
+
+151
+00:07:58.430 --> 00:08:03.350
+All you need to do is tell it what instance of web page subtype you want to stack upon.
+
+152
+00:08:03.350 --> 00:08:06.980
+Since the constructor allows you to link any web page subtype onto the stack,
+
+153
+00:08:06.980 --> 00:08:09.290
+the order in which you build the stack matters.
+
+154
+00:08:09.290 --> 00:08:13.150
+The important part is that the basic web page must be the first one in the stack.
+
+155
+00:08:13.150 --> 00:08:15.260
+The rest of the ordering will depend on the design of
+
+156
+00:08:15.260 --> 00:08:19.105
+your system and which augmenting behaviors you want executed first.
+
+157
+00:08:19.105 --> 00:08:21.080
+Your abstract decorator simply delegates
+
+158
+00:08:21.080 --> 00:08:24.195
+the displayed behavior to the web page object that it aggregates.
+
+159
+00:08:24.195 --> 00:08:29.390
+This will let you combine the display behavior down the stack of web pages.
+
+160
+00:08:29.390 --> 00:08:32.375
+Step four, inherit from the abstract decorator
+
+161
+00:08:32.375 --> 00:08:36.475
+and implement the component interface with concrete decorator classes.
+
+162
+00:08:36.475 --> 00:08:38.795
+The constructors will use the abstract superclasses
+
+163
+00:08:38.795 --> 00:08:42.280
+constructor since it will allow us to stack the decorators together.
+
+164
+00:08:42.280 --> 00:08:44.840
+Remember that the abstract web page decorator class
+
+165
+00:08:44.840 --> 00:08:48.110
+handles the aggregation of the concrete decorator classes.
+
+166
+00:08:48.110 --> 00:08:50.815
+Each decorator has its own responsibilities.
+
+167
+00:08:50.815 --> 00:08:52.790
+You implement these responsibilities within
+
+168
+00:08:52.790 --> 00:08:55.670
+the appropriate classes so that they can be invoked.
+
+169
+00:08:55.670 --> 00:08:58.550
+In order to recursively call the display behavior,
+
+170
+00:08:58.550 --> 00:09:02.040
+the concrete decorators invoke the superclasses display method.
+
+171
+00:09:02.040 --> 00:09:04.010
+Since the abstract decorator superclass
+
+172
+00:09:04.010 --> 00:09:07.280
+facilitates the aggregation of various types of web pages,
+
+173
+00:09:07.280 --> 00:09:10.520
+the call to super.display will cause the next web page in the stack to
+
+174
+00:09:10.520 --> 00:09:14.395
+execute its version of display until you get to the basic web page.
+
+175
+00:09:14.395 --> 00:09:17.540
+The recursive call will end here because the basic web page is
+
+176
+00:09:17.540 --> 00:09:22.070
+the concrete component which does not aggregate any other types of web pages.
+
+177
+00:09:22.070 --> 00:09:24.470
+The idea here is to link the calls displayed all the way
+
+178
+00:09:24.470 --> 00:09:27.500
+to the bottom and bubble the execution back up.
+
+179
+00:09:27.500 --> 00:09:28.940
+This makes sense because you need to build
+
+180
+00:09:28.940 --> 00:09:32.035
+your basic web page before you can add more behaviors to it.
+
+181
+00:09:32.035 --> 00:09:36.805
+Now that you've completed your decorator pattern, let's see it in action.
+
+182
+00:09:36.805 --> 00:09:39.053
+You build your basic web page first,
+
+183
+00:09:39.053 --> 00:09:40.990
+add the authorization behavior next,
+
+184
+00:09:40.990 --> 00:09:44.740
+and then complete the web page by adding the authentication behavior last.
+
+185
+00:09:44.740 --> 00:09:46.840
+This way, when the display method is called,
+
+186
+00:09:46.840 --> 00:09:50.075
+it will link the method calls down to the basic web page.
+
+187
+00:09:50.075 --> 00:09:53.860
+The basic web page will display itself and then the display call will move back up
+
+188
+00:09:53.860 --> 00:09:58.000
+the links to the authorized behavior first and the authentication behavior last.
+
+189
+00:09:58.000 --> 00:10:01.630
+The output of this program would look like this.
+
+190
+00:10:01.630 --> 00:10:04.435
+If we refer back to our aggregation stack diagram,
+
+191
+00:10:04.435 --> 00:10:07.345
+the invocation of display looks like this.
+
+192
+00:10:07.345 --> 00:10:10.000
+As you can see, you can add any decorator to
+
+193
+00:10:10.000 --> 00:10:13.200
+the basic web page to achieve a different combined behavior.
+
+194
+00:10:13.200 --> 00:10:15.610
+This allows you to dynamically build up the behavior of
+
+195
+00:10:15.610 --> 00:10:20.590
+your basic web page because we can instantiate and add new objects the aggregated stack.
+
+196
+00:10:20.590 --> 00:10:23.500
+The decorator design pattern is capable of letting
+
+197
+00:10:23.500 --> 00:10:26.050
+you embellish your objects in a very unique way.
+
+198
+00:10:26.050 --> 00:10:29.815
+To summarize, the key concepts for this design pattern are that,
+
+199
+00:10:29.815 --> 00:10:33.640
+we can add in effect any number of behaviors dynamically to an object
+
+200
+00:10:33.640 --> 00:10:37.675
+at runtime by using aggregation as a substitute for pure inheritance.
+
+201
+00:10:37.675 --> 00:10:41.425
+Polymorphism is achieved by implementing a single interface.
+
+202
+00:10:41.425 --> 00:10:44.515
+Aggregation lets us create a stack of objects.
+
+203
+00:10:44.515 --> 00:10:47.020
+Each decorator object in the stack is aggregated in
+
+204
+00:10:47.020 --> 00:10:50.140
+a one-to-one relationship with the object below it in the stack.
+
+205
+00:10:50.140 --> 00:10:53.305
+And, by combining aggregation and polymorphism,
+
+206
+00:10:53.305 --> 00:10:56.620
+we can recursively invoke the same behavior down the stack and
+
+207
+00:10:56.620 --> 00:11:00.635
+have the behavior execute upwards from the concrete component object.
+
+208
+00:11:00.635 --> 00:11:03.910
+Not only does the decorator design pattern let you dynamically modify
+
+209
+00:11:03.910 --> 00:11:07.960
+objects but it also reduces the variety of classes you would need to write.
+
+210
+00:11:07.960 --> 00:11:10.300
+A larger code base not only takes more time to
+
+211
+00:11:10.300 --> 00:11:12.715
+complete but it is also difficult to maintain,
+
+212
+00:11:12.715 --> 00:11:15.560
+and can reduce the flexibility of your system.
+
+213
+00:11:15.560 --> 00:11:18.070
+You want to have a robust system but without
+
+214
+00:11:18.070 --> 00:11:21.340
+the headache of having an enormous amount of code to write and look after.
+
+215
+00:11:21.340 --> 00:11:24.190
+Using design patterns like the decorator pattern will help you
+
+216
+00:11:24.190 --> 00:11:28.080
+create complex software without the complex overhead.

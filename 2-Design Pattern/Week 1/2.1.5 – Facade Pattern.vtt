@@ -1,0 +1,441 @@
+WEBVTT
+
+1
+00:00:15.220 --> 00:00:17.970
+As parts of your system become larger,
+
+2
+00:00:17.970 --> 00:00:20.065
+they naturally become more complex.
+
+3
+00:00:20.065 --> 00:00:23.865
+This can be potentially confusing for the client classes in your system to use.
+
+4
+00:00:23.865 --> 00:00:27.115
+System complexity is not always a sign of poor design, though.
+
+5
+00:00:27.115 --> 00:00:29.760
+The scope of the problem you're trying to solve may be so large,
+
+6
+00:00:29.760 --> 00:00:31.920
+it requires a complex solution.
+
+7
+00:00:31.920 --> 00:00:35.340
+Client classes, however, would prefer a simpler interaction.
+
+8
+00:00:35.340 --> 00:00:36.900
+The facade design pattern provides
+
+9
+00:00:36.900 --> 00:00:41.165
+a single simplified interface for client classes to interact with the subsystem.
+
+10
+00:00:41.165 --> 00:00:42.705
+What is a facade?
+
+11
+00:00:42.705 --> 00:00:45.690
+If you've ever gone shopping at a retail store, eaten at a restaurant,
+
+12
+00:00:45.690 --> 00:00:47.310
+or ordered anything online,
+
+13
+00:00:47.310 --> 00:00:51.310
+you've had experience interacting with the real world facade design pattern.
+
+14
+00:00:51.310 --> 00:00:54.930
+Picture yourself walking down the street looking for a place to have dinner.
+
+15
+00:00:54.930 --> 00:00:57.230
+What do you look for when you're at street level?
+
+16
+00:00:57.230 --> 00:01:00.120
+Naturally, you look for a sign on the face of a building that
+
+17
+00:01:00.120 --> 00:01:04.260
+indicates that the contents within the structure can provide you with the dining service.
+
+18
+00:01:04.260 --> 00:01:06.285
+Similarly, when you're shopping online,
+
+19
+00:01:06.285 --> 00:01:10.490
+you look for some outward indication that the website you're on has a virtual storefront.
+
+20
+00:01:10.490 --> 00:01:12.390
+These outward facing indicators are used to
+
+21
+00:01:12.390 --> 00:01:15.725
+communicate to the public what types of services are available.
+
+22
+00:01:15.725 --> 00:01:17.805
+When a waiter takes and places your order,
+
+23
+00:01:17.805 --> 00:01:20.960
+or when an online sales platform sends your order to be fulfilled,
+
+24
+00:01:20.960 --> 00:01:22.980
+they are acting as part of a facade by
+
+25
+00:01:22.980 --> 00:01:25.870
+hiding away all the extra work that needs to be done.
+
+26
+00:01:25.870 --> 00:01:27.990
+You are able to purchase goods and services without
+
+27
+00:01:27.990 --> 00:01:30.480
+having to know how the request is processed.
+
+28
+00:01:30.480 --> 00:01:33.450
+The entire construction of the buildings, wait-staff, menus,
+
+29
+00:01:33.450 --> 00:01:37.260
+websites and many other components are behind facades.
+
+30
+00:01:37.260 --> 00:01:40.670
+Keep in mind that a facade does not actually add more functionality,
+
+31
+00:01:40.670 --> 00:01:44.280
+a facade simply acts as a point of entry into your subsystem.
+
+32
+00:01:44.280 --> 00:01:46.620
+In software, the facade design pattern does
+
+33
+00:01:46.620 --> 00:01:49.735
+exactly what a waiter or salesperson would do in real life.
+
+34
+00:01:49.735 --> 00:01:52.050
+A facade is a wrapper class that encapsulate
+
+35
+00:01:52.050 --> 00:01:55.560
+the subsystem in order to hide the subsystem's complexity.
+
+36
+00:01:55.560 --> 00:01:58.270
+This wrapper class will allow a client class to interact with
+
+37
+00:01:58.270 --> 00:02:02.840
+the subsystem through a facade.
+
+38
+00:02:02.840 --> 00:02:04.950
+Let's take a look at how client code would interact with
+
+39
+00:02:04.950 --> 00:02:08.865
+the subsystem without a facade class for a simple banking system.
+
+40
+00:02:08.865 --> 00:02:10.735
+Without a facade class,
+
+41
+00:02:10.735 --> 00:02:13.465
+the customer class would contain instances of the checking,
+
+42
+00:02:13.465 --> 00:02:15.700
+saving and investment classes.
+
+43
+00:02:15.700 --> 00:02:19.060
+This means that the customer is responsible for properly instantiating each of
+
+44
+00:02:19.060 --> 00:02:23.490
+these constituent classes and knows about all their different attributes and methods.
+
+45
+00:02:23.490 --> 00:02:26.860
+This is like having to manage all of your own financial accounts in real life,
+
+46
+00:02:26.860 --> 00:02:29.035
+which can be complex with lots of accounts,
+
+47
+00:02:29.035 --> 00:02:32.050
+instead of letting a financial institution do it for you.
+
+48
+00:02:32.050 --> 00:02:36.310
+Instead, we introduce the bank service class to act as a facade for the checking,
+
+49
+00:02:36.310 --> 00:02:38.195
+saving, and investment classes.
+
+50
+00:02:38.195 --> 00:02:40.945
+The customer class no longer needs to handle instantiation
+
+51
+00:02:40.945 --> 00:02:44.620
+or deal with any of the other complexities of financial management.
+
+52
+00:02:44.620 --> 00:02:48.055
+Since the three different accounts all implement the IAccount interface,
+
+53
+00:02:48.055 --> 00:02:51.985
+the bank's service class is effectively wrapping the account interfacing classes,
+
+54
+00:02:51.985 --> 00:02:55.840
+and presenting a simpler front to them for the customer client class to use.
+
+55
+00:02:55.840 --> 00:03:04.224
+The facade design pattern is simple to apply in our bank accounts example.
+
+56
+00:03:04.224 --> 00:03:06.240
+It combines interface implementation by
+
+57
+00:03:06.240 --> 00:03:09.890
+one or more classes which then gets wrapped by the facade class.
+
+58
+00:03:09.890 --> 00:03:11.660
+Let's see how to do that.
+
+59
+00:03:11.660 --> 00:03:14.560
+Step one. Design the interface.
+
+60
+00:03:14.560 --> 00:03:17.070
+This Java interface is the one that will be implemented by
+
+61
+00:03:17.070 --> 00:03:20.660
+the different account classes and will not be known to the customer class.
+
+62
+00:03:20.660 --> 00:03:23.600
+Step two.
+
+63
+00:03:23.600 --> 00:03:27.150
+Implement the interface with one or more classes.
+
+64
+00:03:27.150 --> 00:03:31.370
+Remember that interfaces allow us to create subtypes which means that checking, saving,
+
+65
+00:03:31.370 --> 00:03:36.215
+and investment are subtypes of i-Account and are expected to behave like an account type.
+
+66
+00:03:36.215 --> 00:03:41.370
+Next, you implementer interface with classes that will be wrapped with our facade class.
+
+67
+00:03:41.370 --> 00:03:44.825
+In this example, you are only implementing and hiding one interface,
+
+68
+00:03:44.825 --> 00:03:46.940
+but in practice, a facade class can be used to
+
+69
+00:03:46.940 --> 00:03:49.940
+wrap all the interfaces and classes for a subsystem.
+
+70
+00:03:49.940 --> 00:03:53.990
+It is your decision as to what you want to wrap.
+
+71
+00:03:53.990 --> 00:03:58.765
+Step three. Create the facade class and wrap the classes that implement the interface.
+
+72
+00:03:58.765 --> 00:04:01.135
+The bank service class is the facade.
+
+73
+00:04:01.135 --> 00:04:02.450
+How does it do that?
+
+74
+00:04:02.450 --> 00:04:04.970
+Notice that its public methods are simple to use and show
+
+75
+00:04:04.970 --> 00:04:08.540
+no hint of the underlying interface and implementing classes.
+
+76
+00:04:08.540 --> 00:04:12.890
+Another thing to note is that we set the access modifiers for each account to be private.
+
+77
+00:04:12.890 --> 00:04:16.835
+Since the entire point of the facade design pattern is to hide complexity,
+
+78
+00:04:16.835 --> 00:04:19.445
+we use the information hiding design principle to prevent
+
+79
+00:04:19.445 --> 00:04:24.800
+all client classes from seeing the account objects and how these accounts behave.
+
+80
+00:04:24.800 --> 00:04:28.460
+Step four. Use the facade class to access the subsystem.
+
+81
+00:04:28.460 --> 00:04:31.040
+Client classes can access the functionalities of
+
+82
+00:04:31.040 --> 00:04:34.020
+the different accounts through the methods of the BankService class.
+
+83
+00:04:34.020 --> 00:04:36.110
+The BankService class will tell the client what type
+
+84
+00:04:36.110 --> 00:04:38.330
+of actions it will allow the client to call upon,
+
+85
+00:04:38.330 --> 00:04:42.130
+and then will delegate that action to the appropriate account objects.
+
+86
+00:04:42.130 --> 00:04:44.045
+Now that we have our facade in place,
+
+87
+00:04:44.045 --> 00:04:46.910
+our client class can access its accounts through the BankService.
+
+88
+00:04:46.910 --> 00:04:51.810
+Your customer class does not need to worry about creating and managing its own accounts.
+
+89
+00:04:51.810 --> 00:04:54.530
+The customer simply needs to know about the BankService and
+
+90
+00:04:54.530 --> 00:04:58.065
+the set of behaviors the BankService is capable of performing.
+
+91
+00:04:58.065 --> 00:05:01.760
+We have effectively hidden the complexity of account management from the customer using
+
+92
+00:05:01.760 --> 00:05:07.280
+the BankService facade class.
+
+93
+00:05:07.280 --> 00:05:10.590
+The facade design pattern is similar to other design patterns in
+
+94
+00:05:10.590 --> 00:05:14.870
+that it uses encapsulation to hide the details of some part of our system.
+
+95
+00:05:14.870 --> 00:05:17.220
+It can be easy to get these design patterns mixed up,
+
+96
+00:05:17.220 --> 00:05:20.575
+so let's summarize what characterizes the facade design pattern.
+
+97
+00:05:20.575 --> 00:05:24.240
+The facade design pattern is a means to hide the complexity of
+
+98
+00:05:24.240 --> 00:05:28.872
+a subsystem by encapsulating it behind a unifying wrapper called a facade class;
+
+99
+00:05:28.872 --> 00:05:32.535
+removes the need for client classes to manage a subsystem on their own,
+
+100
+00:05:32.535 --> 00:05:36.255
+resulting in less coupling between the subsystem and the client classes;
+
+101
+00:05:36.255 --> 00:05:38.700
+handles instantiation and redirection of
+
+102
+00:05:38.700 --> 00:05:41.520
+tasks to the appropriate class within the subsystem;
+
+103
+00:05:41.520 --> 00:05:45.315
+provides client classes with a simplified interface for the subsystem;
+
+104
+00:05:45.315 --> 00:05:48.120
+acts simply as a point of entry to a subsystem and
+
+105
+00:05:48.120 --> 00:05:51.720
+does not add more functionality to the subsystem.
+
+106
+00:05:51.720 --> 00:05:53.640
+The facade design pattern is a way to provide
+
+107
+00:05:53.640 --> 00:05:57.300
+client classes with an easier means of interacting with the parts of your system.
+
+108
+00:05:57.300 --> 00:06:00.660
+Complex subsystems can be difficult to use and navigate.
+
+109
+00:06:00.660 --> 00:06:03.225
+By providing a simpler interface through a facade,
+
+110
+00:06:03.225 --> 00:06:08.000
+client classes will have an easier time successfully using your software.
